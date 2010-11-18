@@ -13,6 +13,8 @@ namespace WellCompareDir.WPF
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        DirectoryInfo outputDirectory = null;
+
         public MainWindowViewModel()
         {
             //// Create two identical or different temporary folders 
@@ -63,6 +65,8 @@ namespace WellCompareDir.WPF
                 catch { }
 
                 this.UpdateFileLists();
+                this.SelectedFileIndex = (this.LeftFiles.Count > 0 && this.RightFiles.Count > 0 ? 0 : -1);
+                CommandManager.InvalidateRequerySuggested();
             }
             else if (propertyName == "RightDirectoryPath")
             {
@@ -80,6 +84,25 @@ namespace WellCompareDir.WPF
                 catch { }
 
                 this.UpdateFileLists();
+                this.SelectedFileIndex = (this.LeftFiles.Count > 0 && this.RightFiles.Count > 0 ? 0 : -1);
+                CommandManager.InvalidateRequerySuggested();
+            }
+            else if (propertyName == "SelectedFileIndex")
+            {
+                this.SelectedFileIndexIsInRange =
+                    (this.SelectedFileIndex != -1
+                    && this.SelectedFileIndex < this.LeftFiles.Count
+                    && this.SelectedFileIndex < this.RightFiles.Count);
+
+                CommandManager.InvalidateRequerySuggested();
+            }
+            else if (propertyName == "OutputDirectoryPath")
+            {
+                outputDirectory = new DirectoryInfo(this.OutputDirectoryPath);
+
+                this.OutputDirectoryPathIsValid = (outputDirectory.Exists);
+
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -172,50 +195,54 @@ namespace WellCompareDir.WPF
                 do
                 {
                     this.LeftFiles.Add(new FileInfoWithCompareResult());
-                    this.RightFiles.Add(new FileInfoWithCompareResult(right.Current, leftUnique.Contains(right.Current)));
+                    this.RightFiles.Add(new FileInfoWithCompareResult(right.Current, rightUnique.Contains(right.Current)));
                 } while (right.MoveNext());
             }
         }
 
         #region File selection
-        public bool CanPreviousFile(object sender)
+        public bool CanPreviousFile(object parameter)
         {
             return (this.SelectedFileIndex > 0);
         }
 
-        public void PreviousFile(object sender)
+        public void PreviousFile(object parameter)
         {
             this.SelectedFileIndex = Math.Max(this.SelectedFileIndex - 1, 0);
         }
 
-        public bool CanNextFile(object sender)
+        public bool CanNextFile(object parameter)
         {
             return (this.SelectedFileIndex < Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
         }
 
-        public void NextFile(object sender)
+        public void NextFile(object parameter)
         {
             this.SelectedFileIndex = Math.Min(this.SelectedFileIndex + 1, Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
         }
 
-        public bool CanUseLeftFile(object sender)
+        public bool CanUseLeftFile(object parameter)
         {
-            return (!this.LeftFiles[this.SelectedFileIndex].IsEmpty);
+            return (this.SelectedFileIndexIsInRange
+                    && (!this.LeftFiles[this.SelectedFileIndex].IsEmpty)
+                    && this.OutputDirectoryPathIsValid);
         }
 
-        public void UseLeftFile(object sender)
+        public void UseLeftFile(object parameter)
         {
             FileInfoWithCompareResult left = this.LeftFiles[this.SelectedFileIndex];
 
             UseFile(left);
         }
 
-        public bool CanUseRightFile(object sender)
+        public bool CanUseRightFile(object parameter)
         {
-            return (!this.RightFiles[this.SelectedFileIndex].IsEmpty);
+            return (this.SelectedFileIndexIsInRange
+                    && (!this.RightFiles[this.SelectedFileIndex].IsEmpty)
+                    && this.OutputDirectoryPathIsValid);
         }
 
-        public void UseRightFile(object sender)
+        public void UseRightFile(object parameter)
         {
             FileInfoWithCompareResult right = this.RightFiles[this.SelectedFileIndex];
 
@@ -226,18 +253,13 @@ namespace WellCompareDir.WPF
         {
             try
             {
-                DirectoryInfo outputDirectory = new DirectoryInfo(this.OutputDirectoryPath);
-
-                if (outputDirectory.Exists)
+                if (!file.IsEmpty
+                    && file.FileInfo != null
+                    && file.FileInfo.Exists)
                 {
-                    if (!file.IsEmpty
-                        && file.FileInfo != null
-                        && file.FileInfo.Exists)
-                    {
-                        File.Copy(file.FileInfo.FullName, Path.Combine(outputDirectory.FullName, file.FileInfo.Name));
+                    File.Copy(file.FileInfo.FullName, Path.Combine(outputDirectory.FullName, file.FileInfo.Name));
 
-                        return true;
-                    }
+                    return true;
                 }
             }
             catch
@@ -275,6 +297,20 @@ namespace WellCompareDir.WPF
             {
                 this.outputDirectoryPath = value;
                 this.OnPropertyChanged("OutputDirectoryPath");
+            }
+        }
+
+        private bool outputDirectoryPathIsValid;
+        public bool OutputDirectoryPathIsValid
+        {
+            get
+            {
+                return this.outputDirectoryPathIsValid;
+            }
+            set
+            {
+                this.outputDirectoryPathIsValid = value;
+                this.OnPropertyChanged("OutputDirectoryPathIsValid");
             }
         }
 
@@ -345,6 +381,20 @@ namespace WellCompareDir.WPF
             {
                 this.selectedFileIndex = value;
                 this.OnPropertyChanged("SelectedFileIndex");
+            }
+        }
+
+        private bool selectedFileIndexIsInRange = false;
+        public bool SelectedFileIndexIsInRange
+        {
+            get
+            {
+                return this.selectedFileIndexIsInRange;
+            }
+            set
+            {
+                this.selectedFileIndexIsInRange = value;
+                this.OnPropertyChanged("SelectedFileIndexIsInRange");
             }
         }
         #endregion

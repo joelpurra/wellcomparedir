@@ -2,30 +2,55 @@
 {
     using System;
     using System.Windows.Input;
+    using System.Diagnostics;
 
     // From
-    // http://stackoverflow.com/questions/3826651/how-to-grab-keyboard-from-child-controls-in-wpf
+    // http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
     public class RelayCommand : ICommand
     {
-        private Action<object> _exec;
-        private Func<object, bool> _canExec;
+        #region Fields
 
-        public RelayCommand(Action<object> exec, Func<object, bool> canExec)
+        readonly Action<object> _execute;
+        readonly Predicate<object> _canExecute;
+
+        #endregion // Fields
+
+        #region Constructors
+
+        public RelayCommand(Action<object> execute)
+            : this(execute, null)
         {
-            _exec = exec;
-            _canExec = canExec;
+        }
+
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        {
+            if (execute == null)
+                throw new ArgumentNullException("execute");
+
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+        #endregion // Constructors
+
+        #region ICommand Members
+
+        [DebuggerStepThrough]
+        public bool CanExecute(object parameter)
+        {
+            return _canExecute == null ? true : _canExecute(parameter);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
         public void Execute(object parameter)
         {
-            _exec(parameter);
+            _execute(parameter);
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return _canExec(parameter);
-        }
-
-        public event EventHandler CanExecuteChanged;
+        #endregion // ICommand Members
     }
 }
