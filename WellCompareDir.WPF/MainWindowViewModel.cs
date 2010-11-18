@@ -11,6 +11,7 @@ using WellCompareDir.Comparer;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using WellCompareDir.WPF.Properties;
 
 namespace WellCompareDir.WPF
 {
@@ -24,11 +25,19 @@ namespace WellCompareDir.WPF
         public MainWindowViewModel()
         {
             this.Status = "";
-            this.OutputDirectoryPath = GetTempDirectory();
-            this.LeftDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            this.RightDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            this.OutputDirectoryPath = (String.IsNullOrWhiteSpace(Settings.Default.OutputDirectoryPath) ? GetTempDirectory() : Settings.Default.OutputDirectoryPath);
+            this.LeftDirectoryPath = (String.IsNullOrWhiteSpace(Settings.Default.LeftDirectoryPath) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : Settings.Default.LeftDirectoryPath);
+            this.RightDirectoryPath = (String.IsNullOrWhiteSpace(Settings.Default.RightDirectoryPath) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : Settings.Default.RightDirectoryPath);
 
             InitCommands();
+        }
+
+        ~MainWindowViewModel()
+        {
+            Settings.Default.OutputDirectoryPath = this.OutputDirectoryPath;
+            Settings.Default.LeftDirectoryPath = this.LeftDirectoryPath;
+            Settings.Default.RightDirectoryPath = this.RightDirectoryPath;
+            Settings.Default.Save();
         }
 
         #region Property change chaining
@@ -726,13 +735,13 @@ namespace WellCompareDir.WPF
             return String.Format("{0}x{1}px ({2}x{3} dpi)", image.PixelWidth, image.PixelHeight, image.DpiX, image.DpiY);
         }
 
-        public string BrowseForFolder(string start)
+        public string BrowseForFolder(string description, string start)
         {
             string selected = null;
 
             FolderBrowserDialog dlg = new FolderBrowserDialog();
 
-            //dlg.Description = "Browse for folder";
+            dlg.Description = description;
 
             dlg.SelectedPath = start;
 
@@ -746,17 +755,17 @@ namespace WellCompareDir.WPF
 
         public void BrowseForOutputDirectory(object parameter)
         {
-            this.OutputDirectoryPath = this.BrowseForFolder(this.OutputDirectoryPath) ?? this.OutputDirectoryPath;
+            this.OutputDirectoryPath = this.BrowseForFolder("Select output directory path", this.OutputDirectoryPath) ?? this.OutputDirectoryPath;
         }
 
         public void BrowseForLeftDirectory(object parameter)
         {
-            this.LeftDirectoryPath = this.BrowseForFolder(this.LeftDirectoryPath) ?? this.LeftDirectoryPath;
+            this.LeftDirectoryPath = this.BrowseForFolder("Select left directory path", this.LeftDirectoryPath) ?? this.LeftDirectoryPath;
         }
 
         public void BrowseForRightDirectory(object parameter)
         {
-            this.RightDirectoryPath = this.BrowseForFolder(this.RightDirectoryPath) ?? this.RightDirectoryPath;
+            this.RightDirectoryPath = this.BrowseForFolder("Select right directory path", this.RightDirectoryPath) ?? this.RightDirectoryPath;
         }
         #endregion
     }
