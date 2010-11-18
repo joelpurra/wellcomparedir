@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using WellCompareDir.Comparer;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace WellCompareDir.WPF
 {
@@ -15,20 +17,11 @@ namespace WellCompareDir.WPF
     {
         DirectoryInfo outputDirectory = null;
 
+        List<FileInfo> leftFileInfos = new List<FileInfo>();
+        List<FileInfo> rightFileInfos = new List<FileInfo>();
+
         public MainWindowViewModel()
         {
-            //// Create two identical or different temporary folders 
-            //// on a local drive and change these file paths.
-            //string pathA = @"C:\TestDir";
-            //string pathB = @"C:\TestDir2";
-
-            //DirectoryInfo dir1 = new DirectoryInfo(pathA);
-            //DirectoryInfo dir2 = new DirectoryInfo(pathB);
-
-            //// Take a snapshot of the file system.
-            //IEnumerable<FileInfo> list1 = dir1.GetFiles("*.*", SearchOption.AllDirectories);
-            //IEnumerable<FileInfo> list2 = dir2.GetFiles("*.*", SearchOption.AllDirectories);
-
             this.Status = "";
             this.OutputDirectoryPath = GetTempDirectory();
             this.LeftDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -37,16 +30,7 @@ namespace WellCompareDir.WPF
             InitCommands();
         }
 
-        public string GetTempDirectory()
-        {
-            string path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            Directory.CreateDirectory(path);
-            return path;
-        }
-
-        List<FileInfo> leftFileInfos = new List<FileInfo>();
-        List<FileInfo> rightFileInfos = new List<FileInfo>();
-
+        #region Property change chaining
         private void HandlePropertyChange(string propertyName)
         {
             if (propertyName == "LeftDirectoryPath")
@@ -100,20 +84,26 @@ namespace WellCompareDir.WPF
             {
                 if (this.SelectedFileIndexIsInRange && this.CanUseLeftFile(null))
                 {
-                    this.LeftImagePath = this.LeftFiles[this.SelectedFileIndex].FileInfo.FullName;
+                    FileInfo left = this.LeftFiles[this.SelectedFileIndex].FileInfo;
+                    this.LeftFileSize = GetFormattedFileSize(ref left);
+                    this.LeftImagePath = left.FullName;
                 }
                 else
                 {
                     this.LeftImagePath = "";
+                    this.LeftFileSize = "";
                 }
 
                 if (this.SelectedFileIndexIsInRange && this.CanUseRightFile(null))
                 {
-                    this.RightImagePath = this.RightFiles[this.SelectedFileIndex].FileInfo.FullName;
+                    FileInfo right = this.RightFiles[this.SelectedFileIndex].FileInfo;
+                    this.RightFileSize = GetFormattedFileSize(ref right);
+                    this.RightImagePath = right.FullName;
                 }
                 else
                 {
                     this.RightImagePath = "";
+                    this.RightFileSize = "";
                 }
             }
             else if (propertyName == "OutputDirectoryPath")
@@ -133,7 +123,79 @@ namespace WellCompareDir.WPF
                 this.OnPropertyChanged("RightImageSource");
             }
         }
+        #endregion
 
+        #region File selection
+        public bool CanPreviousFile(object parameter)
+        {
+            return (this.SelectedFileIndex > 0);
+        }
+
+        public void PreviousFile(object parameter)
+        {
+            this.SelectedFileIndex = Math.Max(this.SelectedFileIndex - 1, 0);
+        }
+
+        public bool CanNextFile(object parameter)
+        {
+            return (this.SelectedFileIndex < Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
+        }
+
+        public void NextFile(object parameter)
+        {
+            this.SelectedFileIndex = Math.Min(this.SelectedFileIndex + 1, Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
+        }
+
+        public bool CanUseLeftFile(object parameter)
+        {
+            return (this.SelectedFileIndexIsInRange
+                    && (!this.LeftFiles[this.SelectedFileIndex].IsEmpty)
+                    && this.OutputDirectoryPathIsValid);
+        }
+
+        public void UseLeftFile(object parameter)
+        {
+            FileInfoWithCompareResult left = this.LeftFiles[this.SelectedFileIndex];
+
+            UseFile(left);
+        }
+
+        public bool CanUseRightFile(object parameter)
+        {
+            return (this.SelectedFileIndexIsInRange
+                    && (!this.RightFiles[this.SelectedFileIndex].IsEmpty)
+                    && this.OutputDirectoryPathIsValid);
+        }
+
+        public void UseRightFile(object parameter)
+        {
+            FileInfoWithCompareResult right = this.RightFiles[this.SelectedFileIndex];
+
+            UseFile(right);
+        }
+
+        private bool UseFile(FileInfoWithCompareResult file)
+        {
+            try
+            {
+                if (!file.IsEmpty
+                    && file.FileInfo != null
+                    && file.FileInfo.Exists)
+                {
+                    File.Copy(file.FileInfo.FullName, Path.Combine(outputDirectory.FullName, file.FileInfo.Name));
+
+                    return true;
+                }
+            }
+            catch
+            {
+                // TODO: error reporting
+            }
+
+            return false;
+        }
+
+        #region UpdateFileLists
         private void UpdateFileLists()
         {
             IEqualityComparer<FileInfo> comparer = new SimpleNameComparer();
@@ -227,76 +289,8 @@ namespace WellCompareDir.WPF
                 } while (right.MoveNext());
             }
         }
+        #endregion
 
-        #region File selection
-        public bool CanPreviousFile(object parameter)
-        {
-            return (this.SelectedFileIndex > 0);
-        }
-
-        public void PreviousFile(object parameter)
-        {
-            this.SelectedFileIndex = Math.Max(this.SelectedFileIndex - 1, 0);
-        }
-
-        public bool CanNextFile(object parameter)
-        {
-            return (this.SelectedFileIndex < Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
-        }
-
-        public void NextFile(object parameter)
-        {
-            this.SelectedFileIndex = Math.Min(this.SelectedFileIndex + 1, Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
-        }
-
-        public bool CanUseLeftFile(object parameter)
-        {
-            return (this.SelectedFileIndexIsInRange
-                    && (!this.LeftFiles[this.SelectedFileIndex].IsEmpty)
-                    && this.OutputDirectoryPathIsValid);
-        }
-
-        public void UseLeftFile(object parameter)
-        {
-            FileInfoWithCompareResult left = this.LeftFiles[this.SelectedFileIndex];
-
-            UseFile(left);
-        }
-
-        public bool CanUseRightFile(object parameter)
-        {
-            return (this.SelectedFileIndexIsInRange
-                    && (!this.RightFiles[this.SelectedFileIndex].IsEmpty)
-                    && this.OutputDirectoryPathIsValid);
-        }
-
-        public void UseRightFile(object parameter)
-        {
-            FileInfoWithCompareResult right = this.RightFiles[this.SelectedFileIndex];
-
-            UseFile(right);
-        }
-
-        private bool UseFile(FileInfoWithCompareResult file)
-        {
-            try
-            {
-                if (!file.IsEmpty
-                    && file.FileInfo != null
-                    && file.FileInfo.Exists)
-                {
-                    File.Copy(file.FileInfo.FullName, Path.Combine(outputDirectory.FullName, file.FileInfo.Name));
-
-                    return true;
-                }
-            }
-            catch
-            {
-                // TODO: error reporting
-            }
-
-            return false;
-        }
         #endregion
 
         #region Properties
@@ -465,14 +459,16 @@ namespace WellCompareDir.WPF
             get
             {
                 BitmapImage image = null;
+                this.LeftImageDimensions = "";
 
                 try
                 {
                     image = LoadImage(this.LeftImagePath);
+
+                    this.LeftImageDimensions = GetImageDimensions(ref image);
                 }
                 catch
                 {
-                    return DependencyProperty.UnsetValue;
                 }
 
                 return image;
@@ -484,31 +480,76 @@ namespace WellCompareDir.WPF
             get
             {
                 BitmapImage image = null;
+                this.RightImageDimensions = "";
 
                 try
                 {
                     image = LoadImage(this.RightImagePath);
+
+                    this.RightImageDimensions = GetImageDimensions(ref image);
                 }
                 catch
                 {
-                    return DependencyProperty.UnsetValue;
                 }
 
                 return image;
             }
         }
 
-        // From
-        // http://stackoverflow.com/questions/20586/wpf-image-urisource-and-data-binding
-        private static BitmapImage LoadImage(string fullPath)
+        string leftImageDimensions = "";
+        public string LeftImageDimensions
         {
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.CacheOption = BitmapCacheOption.OnDemand;
-            image.CreateOptions = BitmapCreateOptions.DelayCreation;
-            image.UriSource = new Uri(fullPath, UriKind.Absolute);
-            image.EndInit();
-            return image;
+            get
+            {
+                return this.leftImageDimensions;
+            }
+            set
+            {
+                this.leftImageDimensions = value;
+                this.OnPropertyChanged("LeftImageDimensions");
+            }
+        }
+
+        string rightImageDimensions = "";
+        public string RightImageDimensions
+        {
+            get
+            {
+                return this.rightImageDimensions;
+            }
+            set
+            {
+                this.rightImageDimensions = value;
+                this.OnPropertyChanged("RightImageDimensions");
+            }
+        }
+
+        string leftFileSize = "";
+        public string LeftFileSize
+        {
+            get
+            {
+                return this.leftFileSize;
+            }
+            set
+            {
+                this.leftFileSize = value;
+                this.OnPropertyChanged("LeftFileSize");
+            }
+        }
+
+        string rightFileSize = "";
+        public string RightFileSize
+        {
+            get
+            {
+                return this.rightFileSize;
+            }
+            set
+            {
+                this.rightFileSize = value;
+                this.OnPropertyChanged("RightFileSize");
+            }
         }
         #endregion
 
@@ -592,6 +633,52 @@ namespace WellCompareDir.WPF
             HandlePropertyChange(propertyName);
         }
 
+        #endregion
+
+        #region Misc
+        public string GetTempDirectory()
+        {
+            string path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(path);
+            return path;
+        }
+
+        // From
+        // http://stackoverflow.com/questions/20586/wpf-image-urisource-and-data-binding
+        private static BitmapImage LoadImage(string fullPath)
+        {
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.OnDemand;
+            image.CreateOptions = BitmapCreateOptions.DelayCreation;
+            image.UriSource = new Uri(fullPath, UriKind.Absolute);
+            image.EndInit();
+
+            // Used to avoid memory leaks?
+            // http://blogs.msdn.com/b/jgoldb/archive/2008/05/04/memory-leaks-in-wpf-based-applications-blog-update.aspx
+            image.Freeze();
+
+            return image;
+        }
+
+        // From
+        // http://stackoverflow.com/questions/128618/c-file-size-format-provider
+        [DllImport("Shlwapi.dll", CharSet = CharSet.Auto)]
+        public static extern long StrFormatByteSize(long fileSize, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer, int bufferSize);
+
+        // TODO: convert to extension method
+        public string GetFormattedFileSize(ref FileInfo file)
+        {
+            StringBuilder buffer = new StringBuilder();
+            StrFormatByteSize(file.Length, buffer, 100);
+            return buffer.ToString();
+        }
+
+        // TODO: convert to extension method
+        private string GetImageDimensions(ref BitmapImage image)
+        {
+            return String.Format("{0}x{1}px ({2}x{3} dpi)", image.PixelWidth, image.PixelHeight, image.DpiX, image.DpiY);
+        }
         #endregion
     }
 }
