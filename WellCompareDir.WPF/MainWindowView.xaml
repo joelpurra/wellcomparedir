@@ -7,7 +7,7 @@
         xmlns:Comparer="clr-namespace:WellCompareDir.Comparer;assembly=WellCompareDir.Comparer"
         xmlns:local="clr-namespace:WellCompareDir.WPF"
         Title="WellCompareDir by Joel Purra"
-        Width="750" Height="550" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Width="950" Height="700" WindowStartupLocation="CenterScreen"
         Icon="/WellCompareDir.WPF;component/Images/pictures.png">
 
     <i:Interaction.Behaviors>
@@ -23,15 +23,25 @@
     </Window.InputBindings>
 
     <Window.Resources>
+        <Style x:Key="fileCompareStyle">
+            <Style.Resources>
+                <!-- Background of selected item when focussed -->
+                <!--<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />-->
+                <!-- Background of selected item when not focussed -->
+                <!--<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Green" />-->
+            </Style.Resources>
+        </Style>
         <DataTemplate x:Key="fileCompareTemplate">
-            <TextBlock Name="text" Text="{Binding Path=DisplayName}" />
+            <DockPanel Name="container">
+                <TextBlock Name="text" Text="{Binding Path=DisplayName}"/>
+            </DockPanel>
 
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=IsUnique}">
                     <DataTrigger.Value>
-                        <sys:Boolean>False</sys:Boolean>
+                        <sys:Boolean>True</sys:Boolean>
                     </DataTrigger.Value>
-                    <Setter TargetName="text" Property="Background" Value="Yellow"/>
+                    <Setter TargetName="container" Property=" Opacity" Value="0.3" />
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -39,7 +49,7 @@
 
     <DockPanel Margin="10">
         <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
-            <Label Content="Output:" />
+            <Label Content="Output:" FontWeight="Bold" />
             <Button Command="{Binding BrowseForOutputDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
                 <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
             </Button>
@@ -65,12 +75,14 @@
             </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Row="0" Grid.Column="0">
-                <Label Content="Left:" />
-                <Button Command="{Binding BrowseForLeftDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0"><Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" /></Button>
+                <Label Content="Left:" FontWeight="Bold" />
+                <Button Command="{Binding BrowseForLeftDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
+                    <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
+                </Button>
                 <Label Content="{Binding LeftDirectoryPath}" />
             </DockPanel>
             <DockPanel Grid.Row="0" Grid.Column="2">
-                <Label Content="Right:" />
+                <Label Content="Right:" FontWeight="Bold" />
                 <Button Command="{Binding BrowseForRightDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
                     <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
                 </Button>
@@ -78,14 +90,18 @@
             </DockPanel>
 
             <ListBox Name="leftFiles" Grid.Row="2" Grid.Column="0"
+                HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding LeftFiles}"
+                SelectedIndex="{Binding SelectedFileIndex}"
                 ItemTemplate="{StaticResource fileCompareTemplate}"
-                SelectedIndex="{Binding SelectedFileIndex}">
+                Style="{StaticResource fileCompareStyle}">
             </ListBox>
             <ListBox Name="rightFiles" Grid.Row="2" Grid.Column="2"
+                HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding RightFiles}"
+                SelectedIndex="{Binding SelectedFileIndex}"
                 ItemTemplate="{StaticResource fileCompareTemplate}"
-                SelectedIndex="{Binding SelectedFileIndex}">
+                Style="{StaticResource fileCompareStyle}">
             </ListBox>
 
             <Image Name="leftImage" Source="{Binding LeftImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" Grid.Row="4" Grid.Column="0" />

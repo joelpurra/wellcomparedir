@@ -460,7 +460,7 @@ namespace WellCompareDir.WPF
             get
             {
                 BitmapImage image = null;
-                this.LeftImageDimensions = "";
+                this.LeftImageDimensions = "-";
 
                 try
                 {
@@ -481,7 +481,7 @@ namespace WellCompareDir.WPF
             get
             {
                 BitmapImage image = null;
-                this.RightImageDimensions = "";
+                this.RightImageDimensions = "-";
 
                 try
                 {
@@ -497,7 +497,7 @@ namespace WellCompareDir.WPF
             }
         }
 
-        string leftImageDimensions = "";
+        string leftImageDimensions = "-";
         public string LeftImageDimensions
         {
             get
@@ -511,7 +511,7 @@ namespace WellCompareDir.WPF
             }
         }
 
-        string rightImageDimensions = "";
+        string rightImageDimensions = "-";
         public string RightImageDimensions
         {
             get
