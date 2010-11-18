@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using WellCompareDir.Comparer;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace WellCompareDir.WPF
 {
@@ -610,12 +611,57 @@ namespace WellCompareDir.WPF
             }
         }
 
+        RelayCommand browseForOutputDirectoryCommand;
+        public RelayCommand BrowseForOutputDirectoryCommand
+        {
+            get
+            {
+                return this.browseForOutputDirectoryCommand;
+            }
+            set
+            {
+                this.browseForOutputDirectoryCommand = value;
+                this.OnPropertyChanged("BrowseForOutputDirectoryCommand");
+            }
+        }
+
+        RelayCommand browseForLeftDirectoryCommand;
+        public RelayCommand BrowseForLeftDirectoryCommand
+        {
+            get
+            {
+                return this.browseForLeftDirectoryCommand;
+            }
+            set
+            {
+                this.browseForLeftDirectoryCommand = value;
+                this.OnPropertyChanged("BrowseForLeftDirectoryCommand");
+            }
+        }
+
+        RelayCommand browseForRightDirectoryCommand;
+        public RelayCommand BrowseForRightDirectoryCommand
+        {
+            get
+            {
+                return this.browseForRightDirectoryCommand;
+            }
+            set
+            {
+                this.browseForRightDirectoryCommand = value;
+                this.OnPropertyChanged("BrowseForRightDirectoryCommand");
+            }
+        }
+
         private void InitCommands()
         {
             PreviousFileCommand = new RelayCommand(PreviousFile, CanPreviousFile);
             NextFileCommand = new RelayCommand(NextFile, CanNextFile);
             UseLeftFileCommand = new RelayCommand(UseLeftFile, CanUseLeftFile);
             UseRightFileCommand = new RelayCommand(UseRightFile, CanUseRightFile);
+            BrowseForOutputDirectoryCommand = new RelayCommand(BrowseForOutputDirectory);
+            BrowseForLeftDirectoryCommand = new RelayCommand(BrowseForLeftDirectory);
+            BrowseForRightDirectoryCommand = new RelayCommand(BrowseForRightDirectory);
         }
         #endregion
 
@@ -678,6 +724,39 @@ namespace WellCompareDir.WPF
         private string GetImageDimensions(ref BitmapImage image)
         {
             return String.Format("{0}x{1}px ({2}x{3} dpi)", image.PixelWidth, image.PixelHeight, image.DpiX, image.DpiY);
+        }
+
+        public string BrowseForFolder(string start)
+        {
+            string selected = null;
+
+            FolderBrowserDialog dlg = new FolderBrowserDialog();
+
+            //dlg.Description = "Browse for folder";
+
+            dlg.SelectedPath = start;
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                selected = dlg.SelectedPath;
+            }
+
+            return selected;
+        }
+
+        public void BrowseForOutputDirectory(object parameter)
+        {
+            this.OutputDirectoryPath = this.BrowseForFolder(this.OutputDirectoryPath) ?? this.OutputDirectoryPath;
+        }
+
+        public void BrowseForLeftDirectory(object parameter)
+        {
+            this.LeftDirectoryPath = this.BrowseForFolder(this.LeftDirectoryPath) ?? this.LeftDirectoryPath;
+        }
+
+        public void BrowseForRightDirectory(object parameter)
+        {
+            this.RightDirectoryPath = this.BrowseForFolder(this.RightDirectoryPath) ?? this.RightDirectoryPath;
         }
         #endregion
     }

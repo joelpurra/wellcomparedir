@@ -35,12 +35,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>pictures.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Framework">
       <HintPath>..\References\NakedMVVM\Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\References\NakedMVVM\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -108,6 +112,18 @@
       <Project>{784E7A2F-8522-480A-A2FC-54559268F220}</Project>
       <Name>WellCompareDir.Comparer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pictures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pictures.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\silk icons.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

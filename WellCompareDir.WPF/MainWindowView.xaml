@@ -6,7 +6,9 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:Comparer="clr-namespace:WellCompareDir.Comparer;assembly=WellCompareDir.Comparer"
         xmlns:local="clr-namespace:WellCompareDir.WPF"
-        Title="WellCompareDir" Width="750" Height="550" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="WellCompareDir by Joel Purra"
+        Width="750" Height="550" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Icon="/WellCompareDir.WPF;component/Images/pictures.png">
 
     <i:Interaction.Behaviors>
         <Framework:AutoWireUpViewModelBehavior />
@@ -36,16 +38,13 @@
     </Window.Resources>
 
     <DockPanel Margin="10">
-
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Margin" Value="5,5,5,5" />
-                </Style>
-            </StackPanel.Resources>
-        </StackPanel>
-
-        <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" Text="{Binding OutputDirectoryPath}" DockPanel.Dock="Bottom"/>
+        <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
+            <Label Content="Output:" />
+            <Button Command="{Binding BrowseForOutputDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
+                <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
+            </Button>
+            <Label Content="{Binding OutputDirectoryPath}" />
+        </DockPanel>
 
         <Grid Height="Auto" DockPanel.Dock="Top">
             <Grid.RowDefinitions>
@@ -65,8 +64,18 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="0" Text="{Binding LeftDirectoryPath}" />
-            <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="2" Text="{Binding RightDirectoryPath}" />
+            <DockPanel Grid.Row="0" Grid.Column="0">
+                <Label Content="Left:" />
+                <Button Command="{Binding BrowseForLeftDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0"><Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" /></Button>
+                <Label Content="{Binding LeftDirectoryPath}" />
+            </DockPanel>
+            <DockPanel Grid.Row="0" Grid.Column="2">
+                <Label Content="Right:" />
+                <Button Command="{Binding BrowseForRightDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
+                    <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
+                </Button>
+                <Label Content="{Binding RightDirectoryPath}" />
+            </DockPanel>
 
             <ListBox Name="leftFiles" Grid.Row="2" Grid.Column="0"
                 ItemsSource="{Binding LeftFiles}"
@@ -93,9 +102,9 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0">Dimensions</Label>
+                <Label Grid.Row="0" Grid.Column="0">Dimensions:</Label>
                 <Label Grid.Row="0" Grid.Column="1" Content="{Binding LeftImageDimensions}"/>
-                <Label Grid.Row="0" Grid.Column="2">Size</Label>
+                <Label Grid.Row="0" Grid.Column="2">Size:</Label>
                 <Label Grid.Row="0" Grid.Column="3" Content="{Binding LeftFileSize}"/>
             </Grid>
 
@@ -110,9 +119,9 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0">Dimensions</Label>
+                <Label Grid.Row="0" Grid.Column="0">Dimensions:</Label>
                 <Label Grid.Row="0" Grid.Column="1" Content="{Binding RightImageDimensions}"/>
-                <Label Grid.Row="0" Grid.Column="2">Size</Label>
+                <Label Grid.Row="0" Grid.Column="2">Size:</Label>
                 <Label Grid.Row="0" Grid.Column="3" Content="{Binding RightFileSize}"/>
             </Grid>
 
