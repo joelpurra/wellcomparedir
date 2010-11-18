@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.ComponentModel;
-using WellCompareDir.Comparer;
-using System.IO;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using WellCompareDir.Comparer;
 
 namespace WellCompareDir.WPF
 {
@@ -123,6 +123,14 @@ namespace WellCompareDir.WPF
                 this.OutputDirectoryPathIsValid = (outputDirectory.Exists);
 
                 CommandManager.InvalidateRequerySuggested();
+            }
+            else if (propertyName == "LeftImagePath")
+            {
+                this.OnPropertyChanged("LeftImageSource");
+            }
+            else if (propertyName == "RightImagePath")
+            {
+                this.OnPropertyChanged("RightImageSource");
             }
         }
 
@@ -427,8 +435,11 @@ namespace WellCompareDir.WPF
             }
             set
             {
-                this.leftImagePath = value;
-                this.OnPropertyChanged("LeftImagePath");
+                if (value != this.leftImagePath)
+                {
+                    this.leftImagePath = value;
+                    this.OnPropertyChanged("LeftImagePath");
+                }
             }
         }
 
@@ -441,9 +452,63 @@ namespace WellCompareDir.WPF
             }
             set
             {
-                this.rightImagePath = value;
-                this.OnPropertyChanged("RightImagePath");
+                if (value != this.rightImagePath)
+                {
+                    this.rightImagePath = value;
+                    this.OnPropertyChanged("RightImagePath");
+                }
             }
+        }
+
+        public object LeftImageSource
+        {
+            get
+            {
+                BitmapImage image = null;
+
+                try
+                {
+                    image = LoadImage(this.LeftImagePath);
+                }
+                catch
+                {
+                    return DependencyProperty.UnsetValue;
+                }
+
+                return image;
+            }
+        }
+
+        public object RightImageSource
+        {
+            get
+            {
+                BitmapImage image = null;
+
+                try
+                {
+                    image = LoadImage(this.RightImagePath);
+                }
+                catch
+                {
+                    return DependencyProperty.UnsetValue;
+                }
+
+                return image;
+            }
+        }
+
+        // From
+        // http://stackoverflow.com/questions/20586/wpf-image-urisource-and-data-binding
+        private static BitmapImage LoadImage(string fullPath)
+        {
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.OnDemand;
+            image.CreateOptions = BitmapCreateOptions.DelayCreation;
+            image.UriSource = new Uri(fullPath, UriKind.Absolute);
+            image.EndInit();
+            return image;
         }
         #endregion
 
