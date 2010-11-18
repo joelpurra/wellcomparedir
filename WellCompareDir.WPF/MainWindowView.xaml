@@ -6,11 +6,28 @@
         xmlns:Framework="clr-namespace:Framework.Behaviors;assembly=Framework"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:Comparer="clr-namespace:WellCompareDir.Comparer;assembly=WellCompareDir.Comparer"
-        Title="WellCompareDir" Height="305" Width="438">
+        xmlns:local="clr-namespace:WellCompareDir.WPF"
+        Title="WellCompareDir" Width="750" Height="550" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <i:Interaction.Behaviors>
         <Framework:AutoWireUpViewModelBehavior />
     </i:Interaction.Behaviors>
+
+    <!--<Window.CommandBindings>
+        <CommandBinding Command="NextFile" CanExecute="CanNextFile" Executed="NextFile" />
+        <CommandBinding Command="NextMatchingFile" CanExecute="Can" Executed="NextMatchingFile" />
+        <CommandBinding Command="UseLeftFile" CanExecute="CanUseLeftFile" Executed="UseLeftFile" />
+        <CommandBinding Command="UseRightFile" CanExecute="CanUseRightFile" Executed="UseRightFile" />
+    </Window.CommandBindings>-->
+
+    <Window.InputBindings>
+        <local:RelayKeyBinding Key="Up" Modifiers="Control" CommandBinding="{Binding PreviousFileCommand}"/>
+        <local:RelayKeyBinding Key="Down" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
+        <local:RelayKeyBinding Key="Space" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
+        <local:RelayKeyBinding Key="Left" Modifiers="Control" CommandBinding="{Binding UseLeftFileCommand}"/>
+        <local:RelayKeyBinding Key="Right" Modifiers="Control" CommandBinding="{Binding UseRightFileCommand}"/>
+        <!--<local:RelayKeyBinding Key="Down" Modifiers="Alt" CommandBinding="{Binding NextMatchingFileCommand}"/>-->
+    </Window.InputBindings>
 
     <Window.Resources>
         <DataTemplate x:Key="fileCompareTemplate">
@@ -29,48 +46,68 @@
         </DataTemplate>
     </Window.Resources>
 
-    <StackPanel>
+    <DockPanel Margin="10">
+
         <!--<Menu>
             <MenuItem Header="File"></MenuItem>
         </Menu>-->
 
-        <Grid ShowGridLines="True">
+        <!--<StatusBar Name="windowStatusBar" DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="{Binding Status}" />
+            </StatusBarItem>
+        </StatusBar>-->
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5,5,5,5" />
+                </Style>
+            </StackPanel.Resources>
+        </StackPanel>
+
+        <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" Text="{Binding OutputDirectoryPath}" DockPanel.Dock="Bottom"/>
+
+        <Grid Height="Auto" DockPanel.Dock="Top">
             <Grid.Resources>
                 <!--<julmar:DeferredBinder x:Key="directoryPathLeftValue" Source="{Binding LeftDirectoryPath, Mode=OneWayToSource}" Timeout="1" />-->
                 <!--<julmar:DeferredBinder x:Key="directoryPathRightValue" Source="{Binding RightDirectoryPath, Mode=OneWayToSource}" Timeout="1" />-->
             </Grid.Resources>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="0" Text="{Binding LeftDirectoryPath}" />
-            <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="1" Text="{Binding RightDirectoryPath}" />
+            <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="2" Text="{Binding RightDirectoryPath}" />
 
-            <ListBox Grid.Row="1" Grid.Column="0"
+            <ListBox Name="leftFiles" Grid.Row="2" Grid.Column="0"
                 ItemsSource="{Binding LeftFiles}"
-                ItemTemplate="{StaticResource fileCompareTemplate}">
+                ItemTemplate="{StaticResource fileCompareTemplate}"
+                SelectedIndex="{Binding SelectedFileIndex}">
             </ListBox>
-            <ListBox Grid.Row="1" Grid.Column="1"
+            <ListBox Name="rightFiles" Grid.Row="2" Grid.Column="2"
                 ItemsSource="{Binding RightFiles}"
-                ItemTemplate="{StaticResource fileCompareTemplate}">
+                ItemTemplate="{StaticResource fileCompareTemplate}"
+                SelectedIndex="{Binding SelectedFileIndex}">
             </ListBox>
 
-            <Image Grid.Row="2" Grid.Column="0" />
-            <Image Grid.Row="2" Grid.Column="1" />
-        </Grid>
+            <Image Grid.Row="4" Grid.Column="0" />
+            <Image Grid.Row="4" Grid.Column="2" />
 
-        <StatusBar Name="windowStatusBar" Height="Auto">
-            <StatusBarItem>
-                <TextBlock Text="{Binding Status}" />
-            </StatusBarItem>
-        </StatusBar>
-    </StackPanel>
+            <Button Command="{Binding UseLeftFileCommand}" Grid.Row="6" Grid.Column="0">Use left image</Button>
+            <Button Command="{Binding UseRightFileCommand}" Grid.Row="6" Grid.Column="2">Use right image</Button>
+        </Grid>
+    </DockPanel>
 </Window>

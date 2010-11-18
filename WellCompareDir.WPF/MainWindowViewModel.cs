@@ -7,6 +7,7 @@ using System.ComponentModel;
 using WellCompareDir.Comparer;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace WellCompareDir.WPF
 {
@@ -25,9 +26,20 @@ namespace WellCompareDir.WPF
             //// Take a snapshot of the file system.
             //IEnumerable<FileInfo> list1 = dir1.GetFiles("*.*", SearchOption.AllDirectories);
             //IEnumerable<FileInfo> list2 = dir2.GetFiles("*.*", SearchOption.AllDirectories);
-            this.Status = "Waiting";
-            this.LeftDirectoryPath = @"w:\";
-            this.RightDirectoryPath = @"m:\";
+
+            this.Status = "";
+            this.OutputDirectoryPath = GetTempDirectory();
+            this.LeftDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            this.RightDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            InitCommands();
+        }
+
+        public string GetTempDirectory()
+        {
+            string path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(path);
+            return path;
         }
 
         List<FileInfo> leftFileInfos = new List<FileInfo>();
@@ -165,6 +177,57 @@ namespace WellCompareDir.WPF
             }
         }
 
+        #region File selection
+        public void PreviousFile()
+        {
+            this.SelectedFileIndex = Math.Max(this.SelectedFileIndex - 1, 0);
+        }
+
+        public void NextFile()
+        {
+            this.SelectedFileIndex = Math.Min(this.SelectedFileIndex + 1, Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
+        }
+
+        public void UseLeftFile()
+        {
+            FileInfoWithCompareResult left = this.LeftFiles[this.SelectedFileIndex];
+
+            UseFile(left);
+        }
+
+        public void UseRightFile()
+        {
+            FileInfoWithCompareResult right = this.RightFiles[this.SelectedFileIndex];
+
+            UseFile(right);
+        }
+
+        private bool UseFile(FileInfoWithCompareResult file)
+        {
+            try
+            {
+                DirectoryInfo outputDirectory = new DirectoryInfo(this.OutputDirectoryPath);
+
+                if (outputDirectory.Exists)
+                {
+                    if (!file.IsEmpty
+                        && file.FileInfo != null
+                        && file.FileInfo.Exists)
+                    {
+                        File.Copy(file.FileInfo.FullName, Path.Combine(outputDirectory.FullName, file.FileInfo.Name));
+
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+            return false;
+        }
+        #endregion
+
         #region Properties
         private string status;
         public string Status
@@ -177,6 +240,20 @@ namespace WellCompareDir.WPF
             {
                 this.status = value;
                 this.OnPropertyChanged("Status");
+            }
+        }
+
+        private string outputDirectoryPath;
+        public string OutputDirectoryPath
+        {
+            get
+            {
+                return this.outputDirectoryPath;
+            }
+            set
+            {
+                this.outputDirectoryPath = value;
+                this.OnPropertyChanged("OutputDirectoryPath");
             }
         }
 
@@ -234,6 +311,86 @@ namespace WellCompareDir.WPF
                 this.rightFiles = value;
                 this.OnPropertyChanged("RightFiles");
             }
+        }
+
+        private int selectedFileIndex = 0;
+        public int SelectedFileIndex
+        {
+            get
+            {
+                return this.selectedFileIndex;
+            }
+            set
+            {
+                this.selectedFileIndex = value;
+                this.OnPropertyChanged("SelectedFileIndex");
+            }
+        }
+        #endregion
+
+        #region Commands
+        DelegateCommand previousFileCommand;
+        public DelegateCommand PreviousFileCommand
+        {
+            get
+            {
+                return this.previousFileCommand;
+            }
+            set
+            {
+                this.previousFileCommand = value;
+                this.OnPropertyChanged("Previous");
+            }
+        }
+
+        DelegateCommand nextFileCommand;
+        public DelegateCommand NextFileCommand
+        {
+            get
+            {
+                return this.nextFileCommand;
+            }
+            set
+            {
+                this.nextFileCommand = value;
+                this.OnPropertyChanged("NextFileCommand");
+            }
+        }
+
+        DelegateCommand useLeftFileCommand;
+        public DelegateCommand UseLeftFileCommand
+        {
+            get
+            {
+                return this.useLeftFileCommand;
+            }
+            set
+            {
+                this.useLeftFileCommand = value;
+                this.OnPropertyChanged("UseLeftFileCommand");
+            }
+        }
+
+        DelegateCommand useRightFileCommand;
+        public DelegateCommand UseRightFileCommand
+        {
+            get
+            {
+                return this.useRightFileCommand;
+            }
+            set
+            {
+                this.useRightFileCommand = value;
+                this.OnPropertyChanged("UseRightFileCommand");
+            }
+        }
+
+        private void InitCommands()
+        {
+            PreviousFileCommand = new DelegateCommand(PreviousFile);
+            NextFileCommand = new DelegateCommand(NextFile);
+            UseLeftFileCommand = new DelegateCommand(UseLeftFile);
+            UseRightFileCommand = new DelegateCommand(UseRightFile);
         }
         #endregion
 
