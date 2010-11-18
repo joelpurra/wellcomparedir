@@ -178,24 +178,44 @@ namespace WellCompareDir.WPF
         }
 
         #region File selection
-        public void PreviousFile()
+        public bool CanPreviousFile(object sender)
+        {
+            return (this.SelectedFileIndex > 0);
+        }
+
+        public void PreviousFile(object sender)
         {
             this.SelectedFileIndex = Math.Max(this.SelectedFileIndex - 1, 0);
         }
 
-        public void NextFile()
+        public bool CanNextFile(object sender)
+        {
+            return (this.SelectedFileIndex < Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
+        }
+
+        public void NextFile(object sender)
         {
             this.SelectedFileIndex = Math.Min(this.SelectedFileIndex + 1, Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
         }
 
-        public void UseLeftFile()
+        public bool CanUseLeftFile(object sender)
+        {
+            return (!this.LeftFiles[this.SelectedFileIndex].IsEmpty);
+        }
+
+        public void UseLeftFile(object sender)
         {
             FileInfoWithCompareResult left = this.LeftFiles[this.SelectedFileIndex];
 
             UseFile(left);
         }
 
-        public void UseRightFile()
+        public bool CanUseRightFile(object sender)
+        {
+            return (!this.RightFiles[this.SelectedFileIndex].IsEmpty);
+        }
+
+        public void UseRightFile(object sender)
         {
             FileInfoWithCompareResult right = this.RightFiles[this.SelectedFileIndex];
 
@@ -222,6 +242,7 @@ namespace WellCompareDir.WPF
             }
             catch
             {
+                // TODO: error reporting
             }
 
             return false;
@@ -329,8 +350,8 @@ namespace WellCompareDir.WPF
         #endregion
 
         #region Commands
-        DelegateCommand previousFileCommand;
-        public DelegateCommand PreviousFileCommand
+        RelayCommand previousFileCommand;
+        public RelayCommand PreviousFileCommand
         {
             get
             {
@@ -343,8 +364,8 @@ namespace WellCompareDir.WPF
             }
         }
 
-        DelegateCommand nextFileCommand;
-        public DelegateCommand NextFileCommand
+        RelayCommand nextFileCommand;
+        public RelayCommand NextFileCommand
         {
             get
             {
@@ -357,8 +378,8 @@ namespace WellCompareDir.WPF
             }
         }
 
-        DelegateCommand useLeftFileCommand;
-        public DelegateCommand UseLeftFileCommand
+        RelayCommand useLeftFileCommand;
+        public RelayCommand UseLeftFileCommand
         {
             get
             {
@@ -371,8 +392,8 @@ namespace WellCompareDir.WPF
             }
         }
 
-        DelegateCommand useRightFileCommand;
-        public DelegateCommand UseRightFileCommand
+        RelayCommand useRightFileCommand;
+        public RelayCommand UseRightFileCommand
         {
             get
             {
@@ -387,10 +408,10 @@ namespace WellCompareDir.WPF
 
         private void InitCommands()
         {
-            PreviousFileCommand = new DelegateCommand(PreviousFile);
-            NextFileCommand = new DelegateCommand(NextFile);
-            UseLeftFileCommand = new DelegateCommand(UseLeftFile);
-            UseRightFileCommand = new DelegateCommand(UseRightFile);
+            PreviousFileCommand = new RelayCommand(PreviousFile, CanPreviousFile);
+            NextFileCommand = new RelayCommand(NextFile, CanNextFile);
+            UseLeftFileCommand = new RelayCommand(UseLeftFile, CanUseLeftFile);
+            UseRightFileCommand = new RelayCommand(UseRightFile, CanUseRightFile);
         }
         #endregion
 
