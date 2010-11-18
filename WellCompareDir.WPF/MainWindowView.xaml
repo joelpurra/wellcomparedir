@@ -103,8 +103,8 @@
                 SelectedIndex="{Binding SelectedFileIndex}">
             </ListBox>
 
-            <Image Grid.Row="4" Grid.Column="0" />
-            <Image Grid.Row="4" Grid.Column="2" />
+            <Image Source="{Binding LeftImagePath}" Grid.Row="4" Grid.Column="0" />
+            <Image Source="{Binding RightImagePath}" Grid.Row="4" Grid.Column="2" />
 
             <Button Command="{Binding UseLeftFileCommand}" Grid.Row="6" Grid.Column="0">Use left image</Button>
             <Button Command="{Binding UseRightFileCommand}" Grid.Row="6" Grid.Column="2">Use right image</Button>

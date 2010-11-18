@@ -96,6 +96,26 @@ namespace WellCompareDir.WPF
 
                 CommandManager.InvalidateRequerySuggested();
             }
+            else if (propertyName == "SelectedFileIndexIsInRange")
+            {
+                if (this.SelectedFileIndexIsInRange && this.CanUseLeftFile(null))
+                {
+                    this.LeftImagePath = this.LeftFiles[this.SelectedFileIndex].FileInfo.FullName;
+                }
+                else
+                {
+                    this.LeftImagePath = "";
+                }
+
+                if (this.SelectedFileIndexIsInRange && this.CanUseRightFile(null))
+                {
+                    this.RightImagePath = this.RightFiles[this.SelectedFileIndex].FileInfo.FullName;
+                }
+                else
+                {
+                    this.RightImagePath = "";
+                }
+            }
             else if (propertyName == "OutputDirectoryPath")
             {
                 outputDirectory = new DirectoryInfo(this.OutputDirectoryPath);
@@ -395,6 +415,34 @@ namespace WellCompareDir.WPF
             {
                 this.selectedFileIndexIsInRange = value;
                 this.OnPropertyChanged("SelectedFileIndexIsInRange");
+            }
+        }
+
+        string leftImagePath = "";
+        public string LeftImagePath
+        {
+            get
+            {
+                return this.leftImagePath;
+            }
+            set
+            {
+                this.leftImagePath = value;
+                this.OnPropertyChanged("LeftImagePath");
+            }
+        }
+
+        string rightImagePath = "";
+        public string RightImagePath
+        {
+            get
+            {
+                return this.rightImagePath;
+            }
+            set
+            {
+                this.rightImagePath = value;
+                this.OnPropertyChanged("RightImagePath");
             }
         }
         #endregion
