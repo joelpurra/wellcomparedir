@@ -4,6 +4,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:Framework="clr-namespace:Framework.Behaviors;assembly=Framework"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:scroll="clr-namespace:SoftwareArchitects.Windows.Controls;assembly=SoftwareArchitects.Windows.Controls.ScrollSynchronizer"
         xmlns:Comparer="clr-namespace:WellCompareDir.Comparer;assembly=WellCompareDir.Comparer"
         xmlns:local="clr-namespace:WellCompareDir.WPF"
         Title="WellCompareDir by Joel Purra"
@@ -57,6 +58,14 @@
         </DockPanel>
 
         <Grid Height="Auto" DockPanel.Dock="Top">
+            <Grid.Resources>
+                <!-- From -->
+                <!-- http://www.codeproject.com/KB/WPF/ScrollSynchronization.aspx -->
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="scroll:ScrollSynchronizer.ScrollGroup" Value="Group1" />
+                </Style>
+            </Grid.Resources>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="5" />

@@ -42,6 +42,9 @@
     <Reference Include="Framework">
       <HintPath>..\References\NakedMVVM\Framework.dll</HintPath>
     </Reference>
+    <Reference Include="SoftwareArchitects.Windows.Controls.ScrollSynchronizer">
+      <HintPath>..\References\ScrollSynchronizer\SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
