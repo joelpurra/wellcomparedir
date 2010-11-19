@@ -8,8 +8,14 @@
         xmlns:Comparer="clr-namespace:WellCompareDir.Comparer;assembly=WellCompareDir.Comparer"
         xmlns:local="clr-namespace:WellCompareDir.WPF"
         Title="WellCompareDir by Joel Purra"
-        Width="950" Height="700" WindowStartupLocation="CenterScreen"
-        Icon="/WellCompareDir.WPF;component/Images/pictures.png">
+        Icon="/WellCompareDir.WPF;component/Images/pictures.png"
+        MinWidth="500"
+        MinHeight="500"
+        Width="{Binding Source={x:Static local:Properties.Settings.Default}, Path=MainWindowViewWidth, Mode=TwoWay}"
+        Height="{Binding Source={x:Static local:Properties.Settings.Default}, Path=MainWindowViewHeight, Mode=TwoWay}"
+        Top ="{Binding Source={x:Static local:Properties.Settings.Default}, Path=MainWindowViewTop, Mode=TwoWay}"
+        Left ="{Binding Source={x:Static local:Properties.Settings.Default}, Path=MainWindowViewLeft, Mode=TwoWay}"
+        WindowState="{Binding Source={x:Static local:Properties.Settings.Default}, Path=MainWindowViewWindowState, Mode=TwoWay}">
 
     <i:Interaction.Behaviors>
         <Framework:AutoWireUpViewModelBehavior />

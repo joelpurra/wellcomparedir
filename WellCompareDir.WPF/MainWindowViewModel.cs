@@ -37,7 +37,6 @@ namespace WellCompareDir.WPF
             Settings.Default.OutputDirectoryPath = this.OutputDirectoryPath;
             Settings.Default.LeftDirectoryPath = this.LeftDirectoryPath;
             Settings.Default.RightDirectoryPath = this.RightDirectoryPath;
-            Settings.Default.Save();
         }
 
         #region Property change chaining

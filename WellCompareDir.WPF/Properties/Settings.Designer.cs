@@ -58,5 +58,65 @@ namespace WellCompareDir.WPF.Properties {
                 this["RightDirectoryPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public double MainWindowViewWidth {
+            get {
+                return ((double)(this["MainWindowViewWidth"]));
+            }
+            set {
+                this["MainWindowViewWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("700")]
+        public double MainWindowViewHeight {
+            get {
+                return ((double)(this["MainWindowViewHeight"]));
+            }
+            set {
+                this["MainWindowViewHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MainWindowViewTop {
+            get {
+                return ((double)(this["MainWindowViewTop"]));
+            }
+            set {
+                this["MainWindowViewTop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MainWindowViewLeft {
+            get {
+                return ((double)(this["MainWindowViewLeft"]));
+            }
+            set {
+                this["MainWindowViewLeft"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.WindowState MainWindowViewWindowState {
+            get {
+                return ((global::System.Windows.WindowState)(this["MainWindowViewWindowState"]));
+            }
+            set {
+                this["MainWindowViewWindowState"] = value;
+            }
+        }
     }
 }
