@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>joelpurra.se/Projects/WellCompareDir by Joel Purra</title>
-	<meta name="description" content="A tool to compare and select images with the same name from two folders, and copy
+	<meta name="description" content="WellCompareDir is a tool to compare and select images with the same name from two folders, and copy
 			to a third folder." />
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
@@ -42,12 +42,13 @@
 
 	<hr class="space" />
 
-	<section class="container">
-		<h1 id="download">
+	<section id="download" class="container">
+		<h1 class="hide">
 			Download</h1>
 		<div class="span-12">
 			<p>
-				<a href="#" id="download-latest" class="button block">Download latest version</a>
+				<a href="download/2010-11-19_0239/WellCompareDir_2010-11-19_0239_release.7z" id="download-latest"
+					class="button block">Download latest version</a>
 			</p>
 			<h2>
 				Latest version: 2010-11-19 02:39</h2>
@@ -65,24 +66,27 @@
 			<h2>
 				Alternatives</h2>
 			<ul>
-				<li><a href="">Release version</a></li>
-				<li><a href="">Debug version</a></li>
-				<li><a href="">Source code</a></li>
+				<li><a href="download/2010-11-19_0239/WellCompareDir_2010-11-19_0239_release.7z">Release
+					version</a></li>
+				<li><a href="download/2010-11-19_0239/WellCompareDir_2010-11-19_0239_debug.7z">Debug
+					version</a></li>
+				<li><a href="download/2010-11-19_0239/WellCompareDir_2010-11-19_0239_source.7z">Source
+					code</a></li>
 			</ul>
 		</aside>
 
 	</section>
-	<section class="container">
-		<h1 id="screenshots">
+	<section id="screenshots" class="container">
+		<h1>
 			Screenshots</h1>
 		<p>
-			<img src="Screenshot/2010-11-19/wellcomparedir_main_window_2010-11-19_0239_01.jpg"
+			<img src="Screenshot/2010-11-19/wellcomparedir_main_window_2010-11-19_0239_01.png"
 				alt="Screenshot of the main window of WellCompareDir from 2010-11-19" /><br />
 			The main window
 		</p>
 	</section>
-	<section class="container">
-		<h1 id="manual">
+	<section id="manual" class="container">
+		<h1>
 			Manual</h1>
 		<p>
 			Use this tool to merge images from two folders to a third, output folder. It is
@@ -106,10 +110,10 @@
 			<h2>
 				Tips</h2>
 			<ul>
-				<li>In the list of images from the two selected folders, unique images are greyed out
-					and images with the same name are not.</li>
-				<li>One of the images will be recommended based on image dimensions and file size; bigger
-					is considered better.</li>
+				<li>In the list of images from the two selected folders, both left and right side images
+					appear in comined alphabetical order with gaps where there is no match on the other
+					side.</li>
+				<li>Unique images are greyed out and images with the same name are not.</li>
 			</ul>
 		</section>
 		<section>
@@ -134,8 +138,8 @@
 			</dl>
 		</section>
 	</section>
-	<section class="container">
-		<h1 id="history">
+	<section id="history" class="container">
+		<h1>
 			History</h1>
 		<p>
 			A brief summary of the changes from version to version.
@@ -147,14 +151,17 @@
 				<li>First public release</li>
 			</ul>
 			<ul>
-				<li><a href="">Release version</a></li>
-				<li><a href="">Debug version</a></li>
-				<li><a href="">Source code</a></li>
+				<li><a href="download/2010-11-19_0239/WellCompareDir_2010-11-19_0239_release.7z">Release
+					version</a></li>
+				<li><a href="download/2010-11-19_0239/WellCompareDir_2010-11-19_0239_debug.7z">Debug
+					version</a></li>
+				<li><a href="download/2010-11-19_0239/WellCompareDir_2010-11-19_0239_source.7z">Source
+					code</a></li>
 			</ul>
 		</section>
 	</section>
-	<section class="container">
-		<h1 id="about">
+	<section id="about" class="container">
+		<h1>
 			About</h1>
 		<p>
 			WellCompareDir was created by <a href="http://joelpurra.se/">Joel Purra</a>, to

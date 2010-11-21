@@ -156,7 +156,6 @@ a.button
     margin-bottom: 3px;
     margin-left: 0;
     margin-right: 3px;
-    /* background-color: #bffbff; */
     -moz-border-radius: 5px;
     border-radius: 5px;
     -moz-box-shadow: 3px 3px 3px rgba(128, 128, 128, .5);
@@ -191,7 +190,11 @@ a.button:active
     background-image: -webkit-gradient(linear,left bottom,left top, color-stop(0, rgba(200,200,200, .3)), color-stop(.1, rgba(200,200,200, 0)), color-stop(.34, rgba(255,255,255, 0)), color-stop(0.78, rgba(255,255,255, .2)));
     background-image: -moz-linear-gradient(center bottom, rgba(200,200,200, .3) 0%, rgba(200,200,200, 0) 10%, rgba(255,255,255, 0) 34%, rgba(255,255,255, .2) 78%);
 }
+
 #download-latest
 {
     font-size: 2em;
+    padding: 0.5em;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
