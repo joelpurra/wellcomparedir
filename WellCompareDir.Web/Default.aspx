@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" ResponseEncoding="UTF-8" %>
 
-<!DOCTYPE html
+<!DOCTYPE html>
 <html class="no-js" lang="en-us">
 <head>
 	<meta charset="utf-8" />
