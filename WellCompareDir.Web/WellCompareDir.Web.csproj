@@ -98,10 +98,12 @@
     <None Include="download\2010-11-19_0239\WellCompareDir_2010-11-19_0239_debug.7z" />
     <None Include="download\2010-11-19_0239\WellCompareDir_2010-11-19_0239_release.7z" />
     <None Include="download\2010-11-19_0239\WellCompareDir_2010-11-19_0239_source.7z" />
+    <None Include="download\2010-11-22_1528\WellCompareDir.Installer.msi" />
+    <None Include="download\2010-11-22_1528\WellCompareDir_2010-11-22_1528_debug.7z" />
+    <None Include="download\2010-11-22_1528\WellCompareDir_2010-11-22_1528_release.7z" />
+    <None Include="download\2010-11-22_1528\WellCompareDir_2010-11-22_1528_source.7z" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="download\2010-11-22_1528\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
