@@ -22,6 +22,9 @@ namespace WellCompareDir.WPF
         // TODO: create an object that collects all left/right data
         // TODO: create a list, where there could also be a center, and a fourth directory comparison
 
+        FileInfo left;
+        FileInfo right;
+
         List<FileInfo> leftFileInfos = new List<FileInfo>();
         List<FileInfo> rightFileInfos = new List<FileInfo>();
 
@@ -104,27 +107,31 @@ namespace WellCompareDir.WPF
             {
                 if (this.SelectedFileIndexIsInRange && this.CanUseLeftFile(null))
                 {
-                    FileInfo left = this.LeftFiles[this.SelectedFileIndex].FileInfo;
-                    this.LeftFileSize = GetFormattedFileSize(ref left);
-                    this.LeftImagePath = left.FullName;
+                    this.left = this.LeftFiles[this.SelectedFileIndex].FileInfo;
+                    this.LeftFileSize = GetFormattedFileSize(ref this.left);
+                    this.LeftImagePath = this.left.FullName;
                 }
                 else
                 {
+                    this.left = null;
                     this.LeftImagePath = "";
                     this.LeftFileSize = "";
                 }
 
                 if (this.SelectedFileIndexIsInRange && this.CanUseRightFile(null))
                 {
-                    FileInfo right = this.RightFiles[this.SelectedFileIndex].FileInfo;
-                    this.RightFileSize = GetFormattedFileSize(ref right);
-                    this.RightImagePath = right.FullName;
+                    this.right = this.RightFiles[this.SelectedFileIndex].FileInfo;
+                    this.RightFileSize = GetFormattedFileSize(ref this.right);
+                    this.RightImagePath = this.right.FullName;
                 }
                 else
                 {
+                    this.right = null;
                     this.RightImagePath = "";
                     this.RightFileSize = "";
                 }
+
+                this.UpdateRecommendations();
             }
             else if (propertyName == "OutputDirectoryPath")
             {
@@ -137,10 +144,45 @@ namespace WellCompareDir.WPF
             else if (propertyName == "LeftImagePath")
             {
                 this.OnPropertyChanged("LeftImageSource");
+
+                this.UpdateRecommendations();
             }
             else if (propertyName == "RightImagePath")
             {
                 this.OnPropertyChanged("RightImageSource");
+
+                this.UpdateRecommendations();
+            }
+        }
+
+        private void UpdateRecommendations()
+        {
+            this.IsLeftRecommended = false;
+            this.IsRightRecommended = false;
+
+            if (this.left != null && this.right != null)
+            {
+                if (this.LeftImageSource != null && this.RightImageSource != null)
+                {
+                    if (this.LeftImageSource.Width > this.RightImageSource.Width
+                        && this.LeftImageSource.Height > this.RightImageSource.Height)
+                    {
+                        this.IsLeftRecommended = true;
+                    }
+                    else if (this.LeftImageSource.Width < this.RightImageSource.Width
+                        && this.LeftImageSource.Height < this.RightImageSource.Height)
+                    {
+                        this.IsRightRecommended = true;
+                    }
+                    else if (this.left.Length > this.right.Length)
+                    {
+                        this.IsLeftRecommended = true;
+                    }
+                    else if (this.left.Length < this.right.Length)
+                    {
+                        this.IsRightRecommended = true;
+                    }
+                }
             }
         }
         #endregion
@@ -474,7 +516,7 @@ namespace WellCompareDir.WPF
             }
         }
 
-        public object LeftImageSource
+        public BitmapImage LeftImageSource
         {
             get
             {
@@ -495,7 +537,7 @@ namespace WellCompareDir.WPF
             }
         }
 
-        public object RightImageSource
+        public BitmapImage RightImageSource
         {
             get
             {
@@ -569,6 +611,34 @@ namespace WellCompareDir.WPF
             {
                 this.rightFileSize = value;
                 this.OnPropertyChanged("RightFileSize");
+            }
+        }
+
+        public bool isLeftRecommended;
+        public bool IsLeftRecommended
+        {
+            get
+            {
+                return this.isLeftRecommended;
+            }
+            set
+            {
+                this.isLeftRecommended = value;
+                this.OnPropertyChanged("IsLeftRecommended");
+            }
+        }
+
+        public bool isRightRecommended;
+        public bool IsRightRecommended
+        {
+            get
+            {
+                return this.isRightRecommended;
+            }
+            set
+            {
+                this.isRightRecommended = value;
+                this.OnPropertyChanged("IsRightRecommended");
             }
         }
         #endregion
