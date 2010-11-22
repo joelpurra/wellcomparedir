@@ -222,6 +222,12 @@ namespace WellCompareDir.WPF
             UseFile(left);
         }
 
+        public void UseLeftFileAndAdvance(object parameter)
+        {
+            this.UseLeftFile(parameter);
+            this.NextFile(parameter);
+        }
+
         public bool CanUseRightFile(object parameter)
         {
             return (this.SelectedFileIndexIsInRange
@@ -234,6 +240,12 @@ namespace WellCompareDir.WPF
             FileInfoWithCompareResult right = this.RightFiles[this.SelectedFileIndex];
 
             UseFile(right);
+        }
+
+        public void UseRightFileAndAdvance(object parameter)
+        {
+            this.UseRightFile(parameter);
+            this.NextFile(parameter);
         }
 
         private bool UseFile(FileInfoWithCompareResult file)
@@ -700,6 +712,34 @@ namespace WellCompareDir.WPF
             }
         }
 
+        RelayCommand useLeftFileAndAdvanceCommand;
+        public RelayCommand UseLeftFileAndAdvanceCommand
+        {
+            get
+            {
+                return this.useLeftFileAndAdvanceCommand;
+            }
+            set
+            {
+                this.useLeftFileAndAdvanceCommand = value;
+                this.OnPropertyChanged("UseLeftFileAndAdvanceCommand");
+            }
+        }
+
+        RelayCommand useRightFileAndAdvanceCommand;
+        public RelayCommand UseRightFileAndAdvanceCommand
+        {
+            get
+            {
+                return this.useRightFileAndAdvanceCommand;
+            }
+            set
+            {
+                this.useRightFileAndAdvanceCommand = value;
+                this.OnPropertyChanged("UseRightFileAndAdvanceCommand");
+            }
+        }
+
         RelayCommand browseForOutputDirectoryCommand;
         public RelayCommand BrowseForOutputDirectoryCommand
         {
@@ -748,6 +788,8 @@ namespace WellCompareDir.WPF
             NextFileCommand = new RelayCommand(NextFile, CanNextFile);
             UseLeftFileCommand = new RelayCommand(UseLeftFile, CanUseLeftFile);
             UseRightFileCommand = new RelayCommand(UseRightFile, CanUseRightFile);
+            UseLeftFileAndAdvanceCommand = new RelayCommand(UseLeftFileAndAdvance, CanUseLeftFile);
+            UseRightFileAndAdvanceCommand = new RelayCommand(UseRightFileAndAdvance, CanUseRightFile);
             BrowseForOutputDirectoryCommand = new RelayCommand(BrowseForOutputDirectory);
             BrowseForLeftDirectoryCommand = new RelayCommand(BrowseForLeftDirectory);
             BrowseForRightDirectoryCommand = new RelayCommand(BrowseForRightDirectory);

@@ -22,11 +22,12 @@
     </i:Interaction.Behaviors>
 
     <Window.InputBindings>
-        <local:RelayKeyBinding Key="Up" Modifiers="Control" CommandBinding="{Binding PreviousFileCommand}"/>
-        <local:RelayKeyBinding Key="Down" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
-        <local:RelayKeyBinding Key="Space" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
-        <local:RelayKeyBinding Key="Left" Modifiers="Control" CommandBinding="{Binding UseLeftFileCommand}"/>
-        <local:RelayKeyBinding Key="Right" Modifiers="Control" CommandBinding="{Binding UseRightFileCommand}"/>
+        <local:RelayKeyBinding Key="Up" CommandBinding="{Binding PreviousFileCommand}"/>
+        <local:RelayKeyBinding Key="Down" CommandBinding="{Binding NextFileCommand}"/>
+        <!--<local:RelayKeyBinding Key="Left" Modifiers="Control" CommandBinding="{Binding UseLeftFileCommand}"/>-->
+        <!--<local:RelayKeyBinding Key="Right" Modifiers="Control" CommandBinding="{Binding UseRightFileCommand}"/>-->
+        <local:RelayKeyBinding Key="Left" CommandBinding="{Binding UseLeftFileAndAdvanceCommand}"/>
+        <local:RelayKeyBinding Key="Right" CommandBinding="{Binding UseRightFileAndAdvanceCommand}"/>
     </Window.InputBindings>
 
     <Window.Resources>
@@ -83,8 +84,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="5" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="Auto" />
+                <!--<RowDefinition Height="5" />-->
+                <!--<RowDefinition Height="Auto" />-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -122,9 +123,13 @@
                 Style="{StaticResource fileCompareStyle}">
             </ListBox>
 
-            <Image Name="leftImage" Source="{Binding LeftImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" Grid.Row="4" Grid.Column="0" />
-            <Image Name="rightImage" Source="{Binding RightImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" Grid.Row="4" Grid.Column="2" />
-
+            <Button Command="{Binding UseLeftFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
+                <Image Name="leftImage" Source="{Binding LeftImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" />
+            </Button>
+            <Button Command="{Binding UseRightFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
+                <Image Name="rightImage" Source="{Binding RightImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" />
+            </Button>
+            
             <Grid Grid.Row="6" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="18" />
@@ -163,7 +168,7 @@
                 <Label Grid.Row="0" Grid.Column="4" Content="{Binding RightFileSize}"/>
             </Grid>
 
-            <Button Command="{Binding UseLeftFileCommand}" Grid.Row="8" Grid.Column="0">
+            <!--<Button Command="{Binding UseLeftFileAndAdvanceCommand}" Grid.Row="8" Grid.Column="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="18" />
@@ -177,8 +182,8 @@
                     <Image Grid.Row="0" Grid.Column="0" Source="/WellCompareDir.WPF;component/Images/bullet_go.png" Stretch="None" Visibility="{Binding IsLeftRecommended, Converter={StaticResource VisibilityOfBool}}" />
                     <Label Grid.Row="0" Grid.Column="1" Padding="0,5">Use left image</Label>
                 </Grid>
-            </Button>
-            <Button Command="{Binding UseRightFileCommand}" Grid.Row="8" Grid.Column="2">
+            </Button>-->
+            <!--<Button Command="{Binding UseRightFileAndAdvanceCommand}" Grid.Row="8" Grid.Column="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="18" />
@@ -192,7 +197,7 @@
                     <Image Grid.Row="0" Grid.Column="0" Source="/WellCompareDir.WPF;component/Images/bullet_go.png" Stretch="None" Visibility="{Binding IsRightRecommended, Converter={StaticResource VisibilityOfBool}}" />
                     <Label Grid.Row="0" Grid.Column="1" Padding="0,5">Use right image</Label>
                 </Grid>
-            </Button>
+            </Button>-->
         </Grid>
     </DockPanel>
 </Window>
