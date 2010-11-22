@@ -43,5 +43,21 @@ namespace WellCompareDir.WPF
 
             this.CommandBindings.Add(openAboutWindowBinding);
         }
+
+        private void leftFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.useLeftButton != null)
+            {
+                this.useLeftButton.Focus();
+            }
+        }
+
+        private void rightFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.useRightButton != null)
+            {
+                this.useRightButton.Focus();
+            }
+        }
     }
 }

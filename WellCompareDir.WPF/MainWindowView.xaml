@@ -113,20 +113,20 @@
                 ItemsSource="{Binding LeftFiles}"
                 SelectedIndex="{Binding SelectedFileIndex}"
                 ItemTemplate="{StaticResource fileCompareTemplate}"
-                Style="{StaticResource fileCompareStyle}">
+                Style="{StaticResource fileCompareStyle}" SelectionChanged="leftFiles_SelectionChanged">
             </ListBox>
             <ListBox Name="rightFiles" Grid.Row="2" Grid.Column="2"
                 HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding RightFiles}"
                 SelectedIndex="{Binding SelectedFileIndex}"
                 ItemTemplate="{StaticResource fileCompareTemplate}"
-                Style="{StaticResource fileCompareStyle}">
+                Style="{StaticResource fileCompareStyle}" SelectionChanged="rightFiles_SelectionChanged">
             </ListBox>
 
-            <Button Command="{Binding UseLeftFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
+            <Button Name="useLeftButton" Command="{Binding UseLeftFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
                 <Image Name="leftImage" Source="{Binding LeftImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" />
             </Button>
-            <Button Command="{Binding UseRightFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
+            <Button Name="useRightButton" Command="{Binding UseRightFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
                 <Image Name="rightImage" Source="{Binding RightImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" />
             </Button>
             
