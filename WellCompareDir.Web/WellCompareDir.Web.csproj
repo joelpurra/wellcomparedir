@@ -82,6 +82,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\COPYING">
+      <Link>COPYING</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\joelpurra.se.url">
+      <Link>joelpurra.se.url</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\WellCompareDir by Joel Purra Homepage.url">
+      <Link>WellCompareDir by Joel Purra Homepage.url</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="download\2010-11-19_0239\WellCompareDir_2010-11-19_0239_debug.7z" />
     <None Include="download\2010-11-19_0239\WellCompareDir_2010-11-19_0239_release.7z" />
     <None Include="download\2010-11-19_0239\WellCompareDir_2010-11-19_0239_source.7z" />

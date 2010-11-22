@@ -1,0 +1,54 @@
+﻿<Window x:Class="WellCompareDir.WPF.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About WellCompareDir by Joel Purra"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        Icon="/WellCompareDir.WPF;component/Images/pictures.png"
+        ResizeMode="NoResize">
+
+    <StackPanel Width="350" Margin="10" Orientation="Vertical">
+        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
+            <TextBlock TextWrapping="Wrap">
+                WellCompareDir is a tool to compare and select images with the same name from two folders, and copy to a third folder.
+            </TextBlock>
+            <TextBlock>
+                <Image Source="/WellCompareDir.WPF;component/Images/pictures.png" Stretch="None" VerticalAlignment="Center" />
+                <Hyperlink NavigateUri="http://joelpurra.se/Projects/WellCompareDir/" BaselineAlignment="Center" RequestNavigate="Hyperlink_RequestNavigate">http://joelpurra.se/Projects/WellCompareDir/</Hyperlink>
+            </TextBlock>
+            <LineBreak />
+            <LineBreak />
+            <TextBlock TextWrapping="Wrap">
+                WellCompareDir copyright 2010 <Hyperlink NavigateUri="http://joelpurra.se/" RequestNavigate="Hyperlink_RequestNavigate">Joel Purra</Hyperlink>. Released as free software under the <Hyperlink NavigateUri="http://www.gnu.org/licenses/gpl.html" RequestNavigate="Hyperlink_RequestNavigate">GNU General Public License</Hyperlink>:
+            </TextBlock>
+            <Border BorderBrush="LightGray" BorderThickness="1" Margin="0,5" SnapsToDevicePixels="True">
+                <ScrollViewer Height="115" Padding="5">
+                    <TextBlock TextWrapping="Wrap">
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+<LineBreak /><LineBreak />
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+<LineBreak /><LineBreak />
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;<Hyperlink NavigateUri="http://www.gnu.org/licenses/" RequestNavigate="Hyperlink_RequestNavigate">http://www.gnu.org/licenses/</Hyperlink>&gt;.
+                    </TextBlock>
+                </ScrollViewer>
+            </Border>
+            <TextBlock TextWrapping="Wrap">
+                <Hyperlink NavigateUri="http://www.famfamfam.com/lab/icons/silk/" RequestNavigate="Hyperlink_RequestNavigate">Silk Icons</Hyperlink> by Mark James used under the <Hyperlink NavigateUri="http://creativecommons.org/licenses/by/3.0/" RequestNavigate="Hyperlink_RequestNavigate">Creative Commons Attribution 3.0 License</Hyperlink>.
+            </TextBlock>
+            <TextBlock TextWrapping="Wrap">
+                <Hyperlink NavigateUri="http://www.codeproject.com/KB/WPF/ScrollSynchronization.aspx" RequestNavigate="Hyperlink_RequestNavigate">ScrollSynchronization</Hyperlink> by Karin Huber used under the <Hyperlink NavigateUri="http://www.codeproject.com/info/cpol10.aspx" RequestNavigate="Hyperlink_RequestNavigate">The Code Project Open License (CPOL) 1.02</Hyperlink>.
+            </TextBlock>
+            <TextBlock TextWrapping="Wrap">
+                Uses <Hyperlink NavigateUri="http://blog.vuscode.com/malovicn/archive/2010/11/07/naked-mvvm-simplest-possible-mvvm-approach.aspx" RequestNavigate="Hyperlink_RequestNavigate">Naked MVVM</Hyperlink> by malovicn.
+            </TextBlock>
+        </TextBlock>
+    </StackPanel>
+</Window>

@@ -8,6 +8,8 @@
     {
         public App()
         {
+            this.ShutdownMode = ShutdownMode.OnMainWindowClose;
+
             IoCBuilder.CollectViewAndViewModelMappings();
         }
 

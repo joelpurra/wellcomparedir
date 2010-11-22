@@ -20,7 +20,7 @@
     <i:Interaction.Behaviors>
         <Framework:AutoWireUpViewModelBehavior />
     </i:Interaction.Behaviors>
-
+    
     <Window.InputBindings>
         <local:RelayKeyBinding Key="Up" Modifiers="Control" CommandBinding="{Binding PreviousFileCommand}"/>
         <local:RelayKeyBinding Key="Down" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
@@ -48,7 +48,7 @@
                     <DataTrigger.Value>
                         <sys:Boolean>True</sys:Boolean>
                     </DataTrigger.Value>
-                    <Setter TargetName="container" Property=" Opacity" Value="0.3" />
+                    <Setter TargetName="container" Property="Opacity" Value="0.3" />
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -56,8 +56,11 @@
 
     <DockPanel Margin="10">
         <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
-            <Label Content="Output:" FontWeight="Bold" />
-            <Button Command="{Binding BrowseForOutputDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
+            <Label Content="Output:" FontWeight="Bold" Padding="0,5,5,5" />
+            <Button Command="{x:Static local:MainWindowView.OpenAboutWindowCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
+                <Image Source="/WellCompareDir.WPF;component/Images/information.png" Stretch="None" />
+            </Button>
+            <Button Command="{Binding BrowseForOutputDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
                 <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
             </Button>
             <Label Content="{Binding OutputDirectoryPath}" />
@@ -90,15 +93,15 @@
             </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Row="0" Grid.Column="0">
-                <Label Content="Left:" FontWeight="Bold" />
-                <Button Command="{Binding BrowseForLeftDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
+                <Label Content="Left:" FontWeight="Bold" Padding="0,5,5,5" />
+                <Button Command="{Binding BrowseForLeftDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
                     <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
                 </Button>
                 <Label Content="{Binding LeftDirectoryPath}" />
             </DockPanel>
             <DockPanel Grid.Row="0" Grid.Column="2">
-                <Label Content="Right:" FontWeight="Bold" />
-                <Button Command="{Binding BrowseForRightDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0">
+                <Label Content="Right:" FontWeight="Bold" Padding="0,5,5,5" />
+                <Button Command="{Binding BrowseForRightDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
                     <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
                 </Button>
                 <Label Content="{Binding RightDirectoryPath}" />
@@ -133,7 +136,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0">Dimensions:</Label>
+                <Label Grid.Row="0" Grid.Column="0" Padding="0,5,5,5">Dimensions:</Label>
                 <Label Grid.Row="0" Grid.Column="1" Content="{Binding LeftImageDimensions}"/>
                 <Label Grid.Row="0" Grid.Column="2">Size:</Label>
                 <Label Grid.Row="0" Grid.Column="3" Content="{Binding LeftFileSize}"/>
@@ -150,7 +153,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0">Dimensions:</Label>
+                <Label Grid.Row="0" Grid.Column="0" Padding="0,5,5,5">Dimensions:</Label>
                 <Label Grid.Row="0" Grid.Column="1" Content="{Binding RightImageDimensions}"/>
                 <Label Grid.Row="0" Grid.Column="2">Size:</Label>
                 <Label Grid.Row="0" Grid.Column="3" Content="{Binding RightFileSize}"/>

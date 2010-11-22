@@ -19,6 +19,29 @@ namespace WellCompareDir.WPF
         public MainWindowView()
         {
             InitializeComponent();
+
+            InitCommands();
+        }
+
+        private void CanOpenAboutWindow(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void OpenAboutWindow(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window aboutWindow = new AboutWindow();
+            aboutWindow.Owner = this;
+            aboutWindow.ShowDialog();
+        }
+
+        public static RoutedUICommand OpenAboutWindowCommand = new RoutedUICommand();
+
+        private void InitCommands()
+        {
+            CommandBinding openAboutWindowBinding = new CommandBinding(OpenAboutWindowCommand, OpenAboutWindow, CanOpenAboutWindow);
+
+            this.CommandBindings.Add(openAboutWindowBinding);
         }
     }
 }
