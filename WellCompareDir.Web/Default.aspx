@@ -28,7 +28,7 @@
 		</header>
 
 		<nav>
-			<ol>
+			<ol start="0">
 				<li><a href="#download">Download</a></li>
 				<li><a href="#screenshots">Screenshots</a></li>
 				<li><a href="#manual">Manual</a></li>
@@ -46,12 +46,19 @@
 			Download</h1>
 		<div class="span-12">
 			<p>
-				<a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_release.7z" id="download-latest"
+				<a href="download/2010-11-22_1528/WellCompareDir.Installer.msi" id="download-latest"
 					class="button block">Download latest version</a>
+			</p>
+			<h2>
+				Installation</h2>
+			<p>
+				Download and run installation package. A shortcut will be installed, find it from
+				your start menu to run the program.
 			</p>
 			<h2>
 				Latest version: 2010-11-22 15:28</h2>
 			<ul>
+				<li>Added installer for simpler distriution</li>
 				<li>Match images with different extensions</li>
 				<li>Show only supported image format extensions</li>
 				<li>Make images buttons</li>
@@ -62,19 +69,29 @@
 
 		<aside class="span-12 last">
 			<h2>
-				Installation</h2>
-			<p>
-				Unpack into any folder, run WellCompareDir.WPF.exe from there.
-			</p>
-			<h2>
 				Alternatives</h2>
 			<ul>
+				<li><a href="download/2010-11-22_1528/WellCompareDir.Installer.msi">Installation package</a></li>
 				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_release.7z">Release
-					version</a></li>
+					version (no installation)</a></li>
 				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_debug.7z">Debug
-					version</a></li>
+					version (no installation)</a></li>
 				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_source.7z">Source
 					code</a></li>
+			</ul>
+			<h2>
+				Requirements</h2>
+			<p>
+				Normal Windows computers that have installed Microsoft's monthly patches should
+				be able to use WellCompareDir with no extra hassle.
+			</p>
+			<ul>
+				<li>Microsoft Windows</li>
+				<li>Microsoft Windows Installer, if downloading the installer package</li>
+				<li><a href="http://www.microsoft.com/net/">Microsoft .NET Framework 4.0</a></li>
+				<li><a href="http://www.7-zip.org/">7-Zip</a> if downloading a non-installer package</li>
+				<li>For non-Windows users: <a href="http://www.mono-project.com/">Mono</a> has not been
+					tested, please let me know if you have any success.</li>
 			</ul>
 		</aside>
 
@@ -116,9 +133,9 @@
 				<li>Click the bottom right folder button to browse to the output folder where images
 					will be copied to.</li>
 				<li>Select images to compare in the lists at the top.</li>
-				<li>Choose whether to use the left or the right image, using the buttons below the images.
-					The selected image will be copied to the output directory.</li>
-				<li>Select the next image, repeat.</li>
+				<li>Choose whether to use the left or the right image, by clicking. The selected image
+					will be copied to the output directory.</li>
+				<li>The next image will be displayed. Repeat.</li>
 			</ol>
 		</section>
 		<section>
@@ -132,6 +149,17 @@
 				<li>If two images look similar, have a look at the image dimensions and file size. The
 					largest image in pixels, or the largest file in bytes, is noted with a small green
 					arrow.</li>
+				<li>Supports images in the following formats
+					<ul>
+						<li>JPEG (.jpg, .jpeg, .jpe)</li>
+						<li>TIFF (.tif, .tiff)</li>
+						<li>PNG (.png)</li>
+						<li>GIF (.gif)</li>
+						<li>Windows Bitmap (.bmp)</li>
+						<li>Windows Media Photo (.hdp, .jxr, .wdp)</li>
+						<li>Windows Icon (.ico)</li>
+					</ul>
+				</li>
 			</ul>
 		</section>
 		<section>
@@ -141,16 +169,16 @@
 				Speed up your work with shortcut keys, the way WellCompareDir was meant to be used.
 			</p>
 			<dl>
-				<dt>Left arrow</dt>
+				<dt>Left arrow key</dt>
 				<dd>
 					Use the left image and advance to the next image.</dd>
-				<dt>Right arrow</dt>
+				<dt>Right arrow key</dt>
 				<dd>
 					Use the right image and advance to the next image.</dd>
-				<dt>Down arrow</dt>
+				<dt>Down arrow key</dt>
 				<dd>
 					Advance to the next image.</dd>
-				<dt>Up arrow</dt>
+				<dt>Up arrow key</dt>
 				<dd>
 					Back to previous image</dd>
 			</dl>
@@ -166,6 +194,7 @@
 			<h2>
 				Latest version: 2010-11-22 15:28</h2>
 			<ul>
+				<li>Added installer for simpler distriution</li>
 				<li>Match images with different extensions</li>
 				<li>Show only supported image format extensions</li>
 				<li>Make images buttons</li>
@@ -173,12 +202,11 @@
 				<li>Added copyright information</li>
 			</ul>
 			<ul>
-				<li><a href="Screenshot/2010-11-22/wellcomparedir_main_window_2010-11-22_1528_01.jpg">
-					Screenshot</a></li>
+				<li><a href="download/2010-11-22_1528/WellCompareDir.Installer.msi">Installation package</a></li>
 				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_release.7z">Release
-					version</a></li>
+					version (no installation)</a></li>
 				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_debug.7z">Debug
-					version</a></li>
+					version (no installation)</a></li>
 				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_source.7z">Source
 					code</a></li>
 			</ul>

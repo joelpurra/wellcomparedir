@@ -197,6 +197,8 @@ a.button:active
 
 #download-latest
 {
+    width: 100%;
+    text-align: center;
     font-size: 2em;
     padding: 0.5em;
     -moz-border-radius: 10px;
