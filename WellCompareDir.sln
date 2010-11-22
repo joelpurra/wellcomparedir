@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A1E2EE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellCompareDir.Web", "WellCompareDir.Web\WellCompareDir.Web.csproj", "{4B6B3593-C25E-41D5-B84F-89579A48C8B7}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WellCompareDir.Installer", "WellCompareDir.Installer\WellCompareDir.Installer.vdproj", "{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,15 @@ Global
 		{4B6B3593-C25E-41D5-B84F-89579A48C8B7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4B6B3593-C25E-41D5-B84F-89579A48C8B7}.Release|x64.ActiveCfg = Release|Any CPU
 		{4B6B3593-C25E-41D5-B84F-89579A48C8B7}.Release|x86.ActiveCfg = Release|Any CPU
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Debug|Any CPU.ActiveCfg = Debug
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Debug|x64.ActiveCfg = Debug
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Debug|x86.ActiveCfg = Debug
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|Any CPU.ActiveCfg = Release
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|Any CPU.Build.0 = Release
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|Mixed Platforms.ActiveCfg = Release
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|x64.ActiveCfg = Release
+		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

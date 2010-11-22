@@ -5,8 +5,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>joelpurra.se/Projects/WellCompareDir by Joel Purra</title>
-	<meta name="description" content="WellCompareDir is a tool to compare and select images with the same name from two folders, and copy
-			to a third folder." />
+	<meta name="description" content="WellCompareDir is a tool to compare and select images with the same name from two folders, and copy to a third folder." />
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
 	<!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
