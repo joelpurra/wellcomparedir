@@ -141,12 +141,16 @@ h1 ~ dl
 	margin-left: 0;
 }
 
-h2 ~ p,
+h2 ~ p
+{
+	margin-left: 4em;
+}
+
 h2 ~ ul,
 h2 ~ ol,
 h2 ~ dl
 {
-	margin-left: 3em;
+	margin-left: 5em;
 }
 
 button,
