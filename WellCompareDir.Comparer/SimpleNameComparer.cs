@@ -11,15 +11,14 @@ namespace WellCompareDir.Comparer
 
     // This implementation defines a very simple comparison
     // between two FileInfo objects. It only compares the name
-    // of the files being compared and their length in bytes.
+    // of the files being compared.
     public class SimpleNameComparer : IEqualityComparer<FileInfo>
     {
         public SimpleNameComparer() { }
 
         public bool Equals(FileInfo f1, FileInfo f2)
         {
-            return (f1.Name == f2.Name &&
-                    f1.Length == f2.Length);
+            return (f1.Name.ToLowerInvariant() == f2.Name.ToLowerInvariant());
         }
 
         // Return a hash that reflects the comparison criteria. According to the 
@@ -29,8 +28,7 @@ namespace WellCompareDir.Comparer
         // hash code.
         public int GetHashCode(FileInfo fi)
         {
-            string s = String.Format("{0}{1}", fi.Name, fi.Length);
-            return s.GetHashCode();
+            return fi.Name.ToLowerInvariant().GetHashCode();
         }
     }
 }

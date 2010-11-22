@@ -10,6 +10,12 @@
         {
             this.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
+            if (!Settings.Default.SettingsHaveBeenUpgraded)
+            {
+                Settings.Default.Upgrade();
+                Settings.Default.SettingsHaveBeenUpgraded = true;
+            }
+
             IoCBuilder.CollectViewAndViewModelMappings();
         }
 

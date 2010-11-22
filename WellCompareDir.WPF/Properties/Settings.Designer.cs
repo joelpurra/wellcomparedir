@@ -118,5 +118,17 @@ namespace WellCompareDir.WPF.Properties {
                 this["MainWindowViewWindowState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SettingsHaveBeenUpgraded {
+            get {
+                return ((bool)(this["SettingsHaveBeenUpgraded"]));
+            }
+            set {
+                this["SettingsHaveBeenUpgraded"] = value;
+            }
+        }
     }
 }

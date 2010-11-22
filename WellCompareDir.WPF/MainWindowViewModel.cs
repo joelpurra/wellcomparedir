@@ -19,24 +19,35 @@ namespace WellCompareDir.WPF
     {
         DirectoryInfo outputDirectory = null;
 
+        // TODO: create an object that collects all left/right data
+        // TODO: create a list, where there could also be a center, and a fourth directory comparison
+
         List<FileInfo> leftFileInfos = new List<FileInfo>();
         List<FileInfo> rightFileInfos = new List<FileInfo>();
 
+        List<string> FileMask = new List<string>();
+
         public MainWindowViewModel()
         {
+            this.FileMask.Add(".bmp");
+            this.FileMask.Add(".jpg");
+            this.FileMask.Add(".jpeg");
+            this.FileMask.Add(".jpe");
+            this.FileMask.Add(".png");
+            this.FileMask.Add(".tif");
+            this.FileMask.Add(".tiff");
+            this.FileMask.Add(".hdp");
+            this.FileMask.Add(".wdp");
+            this.FileMask.Add(".jxr");
+            this.FileMask.Add(".gif");
+            this.FileMask.Add(".ico");
+
             this.Status = "";
             this.OutputDirectoryPath = (String.IsNullOrWhiteSpace(Settings.Default.OutputDirectoryPath) ? GetTempDirectory() : Settings.Default.OutputDirectoryPath);
             this.LeftDirectoryPath = (String.IsNullOrWhiteSpace(Settings.Default.LeftDirectoryPath) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : Settings.Default.LeftDirectoryPath);
             this.RightDirectoryPath = (String.IsNullOrWhiteSpace(Settings.Default.RightDirectoryPath) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : Settings.Default.RightDirectoryPath);
 
             InitCommands();
-        }
-
-        ~MainWindowViewModel()
-        {
-            Settings.Default.OutputDirectoryPath = this.OutputDirectoryPath;
-            Settings.Default.LeftDirectoryPath = this.LeftDirectoryPath;
-            Settings.Default.RightDirectoryPath = this.RightDirectoryPath;
         }
 
         #region Property change chaining
@@ -52,7 +63,7 @@ namespace WellCompareDir.WPF
 
                     if (leftDirectory.Exists)
                     {
-                        this.leftFileInfos.AddRange(leftDirectory.GetFiles());
+                        this.leftFileInfos.AddRange(FilterFileInfosByExtension(leftDirectory, this.FileMask));
                     }
                 }
                 catch { }
@@ -71,7 +82,7 @@ namespace WellCompareDir.WPF
 
                     if (rightDirectory.Exists)
                     {
-                        this.rightFileInfos.AddRange(rightDirectory.GetFiles());
+                        this.rightFileInfos.AddRange(FilterFileInfosByExtension(rightDirectory, this.FileMask));
                     }
                 }
                 catch { }
@@ -207,7 +218,7 @@ namespace WellCompareDir.WPF
         #region UpdateFileLists
         private void UpdateFileLists()
         {
-            IEqualityComparer<FileInfo> comparer = new SimpleNameComparer();
+            NameWithoutExtensionComparer comparer = new NameWithoutExtensionComparer();
 
             DirectoryComparer directoryComparer = new DirectoryComparer(leftFileInfos, rightFileInfos, comparer);
 
@@ -226,7 +237,7 @@ namespace WellCompareDir.WPF
 
                 while (left.MoveNext() && right.Current != null)
                 {
-                    int cmpOuter = left.Current.Name.CompareTo(right.Current.Name);
+                    int cmpOuter = comparer.Compare(left.Current, right.Current);
 
                     if (cmpOuter < 0)
                     {
@@ -245,9 +256,11 @@ namespace WellCompareDir.WPF
                         this.LeftFiles.Add(new FileInfoWithCompareResult());
                         this.RightFiles.Add(new FileInfoWithCompareResult(right.Current, rightUnique.Contains(right.Current)));
 
-                        while (right.MoveNext())
+                        bool canRightMoveNext = right.MoveNext();
+
+                        while (canRightMoveNext)
                         {
-                            int cmpInner = left.Current.Name.CompareTo(right.Current.Name);
+                            int cmpInner = comparer.Compare(left.Current, right.Current);
 
                             if (cmpInner > 0)
                             {
@@ -259,8 +272,7 @@ namespace WellCompareDir.WPF
                                 this.LeftFiles.Add(new FileInfoWithCompareResult(left.Current, leftUnique.Contains(left.Current)));
                                 this.RightFiles.Add(new FileInfoWithCompareResult(right.Current, rightUnique.Contains(right.Current)));
 
-                                right.MoveNext();
-                                break;
+                                left.MoveNext();
                             }
                             else
                             {
@@ -269,9 +281,11 @@ namespace WellCompareDir.WPF
 
                                 break;
                             }
+
+                            canRightMoveNext = right.MoveNext();
                         }
 
-                        if (right.Current == null)
+                        if (!canRightMoveNext)
                         {
                             this.LeftFiles.Add(new FileInfoWithCompareResult(left.Current, leftUnique.Contains(left.Current)));
                             this.RightFiles.Add(new FileInfoWithCompareResult());
@@ -317,16 +331,15 @@ namespace WellCompareDir.WPF
             }
         }
 
-        private string outputDirectoryPath;
         public string OutputDirectoryPath
         {
             get
             {
-                return this.outputDirectoryPath;
+                return Settings.Default.OutputDirectoryPath;
             }
             set
             {
-                this.outputDirectoryPath = value;
+                Settings.Default.OutputDirectoryPath = value;
                 this.OnPropertyChanged("OutputDirectoryPath");
             }
         }
@@ -345,30 +358,28 @@ namespace WellCompareDir.WPF
             }
         }
 
-        private string leftDirectoryPath;
         public string LeftDirectoryPath
         {
             get
             {
-                return this.leftDirectoryPath;
+                return Settings.Default.LeftDirectoryPath;
             }
             set
             {
-                this.leftDirectoryPath = value;
+                Settings.Default.LeftDirectoryPath = value;
                 this.OnPropertyChanged("LeftDirectoryPath");
             }
         }
 
-        private string rightDirectoryPath;
         public string RightDirectoryPath
         {
             get
             {
-                return this.rightDirectoryPath;
+                return Settings.Default.RightDirectoryPath;
             }
             set
             {
-                this.rightDirectoryPath = value;
+                Settings.Default.RightDirectoryPath = value;
                 this.OnPropertyChanged("RightDirectoryPath");
             }
         }
@@ -765,6 +776,14 @@ namespace WellCompareDir.WPF
         public void BrowseForRightDirectory(object parameter)
         {
             this.RightDirectoryPath = this.BrowseForFolder("Select right directory path", this.RightDirectoryPath) ?? this.RightDirectoryPath;
+        }
+
+        // TODO: create extension method
+        private static IEnumerable<FileInfo> FilterFileInfosByExtension(DirectoryInfo leftDirectory, IEnumerable<string> extensions)
+        {
+            List<FileInfo> allFilesInFolder = new List<FileInfo>(leftDirectory.GetFiles());
+            IEnumerable<FileInfo> filtered = allFilesInFolder.Where(fi => extensions.Contains(Path.GetExtension(fi.Name).ToLowerInvariant()));
+            return filtered;
         }
         #endregion
     }

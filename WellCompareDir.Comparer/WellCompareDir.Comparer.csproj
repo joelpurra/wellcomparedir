@@ -43,6 +43,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="NameWithoutExtensionComparer.cs" />
     <Compile Include="DirectoryComparer.cs" />
     <Compile Include="FileInfoWithCompareResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
