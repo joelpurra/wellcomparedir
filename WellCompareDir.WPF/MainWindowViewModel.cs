@@ -10,7 +10,6 @@ using System.Windows.Media.Imaging;
 using WellCompareDir.Comparer;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Forms;
 using WellCompareDir.WPF.Properties;
 
 namespace WellCompareDir.WPF
@@ -22,8 +21,8 @@ namespace WellCompareDir.WPF
         // TODO: create an object that collects all left/right data
         // TODO: create a list, where there could also be a center, and a fourth directory comparison
 
-        FileInfo left;
-        FileInfo right;
+        FileInfoWithCompareResult left;
+        FileInfoWithCompareResult right;
 
         List<FileInfo> leftFileInfos = new List<FileInfo>();
         List<FileInfo> rightFileInfos = new List<FileInfo>();
@@ -107,9 +106,10 @@ namespace WellCompareDir.WPF
             {
                 if (this.SelectedFileIndexIsInRange && this.CanUseLeftFile(null))
                 {
-                    this.left = this.LeftFiles[this.SelectedFileIndex].FileInfo;
-                    this.LeftFileSize = GetFormattedFileSize(ref this.left);
-                    this.LeftImagePath = this.left.FullName;
+                    this.left = this.LeftFiles[this.SelectedFileIndex];
+                    FileInfo fi = this.left.FileInfo;
+                    this.LeftFileSize = GetFormattedFileSize(ref fi);
+                    this.LeftImagePath = this.left.FileInfo.FullName;
                 }
                 else
                 {
@@ -120,9 +120,10 @@ namespace WellCompareDir.WPF
 
                 if (this.SelectedFileIndexIsInRange && this.CanUseRightFile(null))
                 {
-                    this.right = this.RightFiles[this.SelectedFileIndex].FileInfo;
-                    this.RightFileSize = GetFormattedFileSize(ref this.right);
-                    this.RightImagePath = this.right.FullName;
+                    this.right = this.RightFiles[this.SelectedFileIndex];
+                    FileInfo fi = this.right.FileInfo;
+                    this.RightFileSize = GetFormattedFileSize(ref fi);
+                    this.RightImagePath = this.right.FileInfo.FullName;
                 }
                 else
                 {
@@ -174,11 +175,11 @@ namespace WellCompareDir.WPF
                     {
                         this.IsRightRecommended = true;
                     }
-                    else if (this.left.Length > this.right.Length)
+                    else if (this.left.FileInfo.Length > this.right.FileInfo.Length)
                     {
                         this.IsLeftRecommended = true;
                     }
-                    else if (this.left.Length < this.right.Length)
+                    else if (this.left.FileInfo.Length < this.right.FileInfo.Length)
                     {
                         this.IsRightRecommended = true;
                     }
@@ -198,6 +199,17 @@ namespace WellCompareDir.WPF
             this.SelectedFileIndex = Math.Max(this.SelectedFileIndex - 1, 0);
         }
 
+        public void PreviousMatchingFile(object parameter)
+        {
+            if (this.CanPreviousFile(parameter))
+            {
+                do
+                {
+                    this.PreviousFile(parameter);
+                } while (this.CanPreviousFile(parameter) && this.right.IsUnique);
+            }
+        }
+
         public bool CanNextFile(object parameter)
         {
             return (this.SelectedFileIndex < Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
@@ -206,6 +218,17 @@ namespace WellCompareDir.WPF
         public void NextFile(object parameter)
         {
             this.SelectedFileIndex = Math.Min(this.SelectedFileIndex + 1, Math.Min(this.LeftFiles.Count - 1, this.RightFiles.Count - 1));
+        }
+
+        public void NextMatchingFile(object parameter)
+        {
+            if (this.CanNextFile(parameter))
+            {
+                do
+                {
+                    this.NextFile(parameter);
+                } while (this.CanNextFile(parameter) && this.left.IsUnique);
+            }
         }
 
         public bool CanUseLeftFile(object parameter)
@@ -666,7 +689,7 @@ namespace WellCompareDir.WPF
             set
             {
                 this.previousFileCommand = value;
-                this.OnPropertyChanged("Previous");
+                this.OnPropertyChanged("PreviousFileCommand");
             }
         }
 
@@ -681,6 +704,33 @@ namespace WellCompareDir.WPF
             {
                 this.nextFileCommand = value;
                 this.OnPropertyChanged("NextFileCommand");
+            }
+        }
+        RelayCommand previousMatchingFileCommand;
+        public RelayCommand PreviousMatchingFileCommand
+        {
+            get
+            {
+                return this.previousMatchingFileCommand;
+            }
+            set
+            {
+                this.previousMatchingFileCommand = value;
+                this.OnPropertyChanged("PreviousMatchingFileCommand");
+            }
+        }
+
+        RelayCommand nextFileMatchingCommand;
+        public RelayCommand NextMatchingFileCommand
+        {
+            get
+            {
+                return this.nextFileMatchingCommand;
+            }
+            set
+            {
+                this.nextFileMatchingCommand = value;
+                this.OnPropertyChanged("NextMatchingFileCommand");
             }
         }
 
@@ -740,59 +790,16 @@ namespace WellCompareDir.WPF
             }
         }
 
-        RelayCommand browseForOutputDirectoryCommand;
-        public RelayCommand BrowseForOutputDirectoryCommand
-        {
-            get
-            {
-                return this.browseForOutputDirectoryCommand;
-            }
-            set
-            {
-                this.browseForOutputDirectoryCommand = value;
-                this.OnPropertyChanged("BrowseForOutputDirectoryCommand");
-            }
-        }
-
-        RelayCommand browseForLeftDirectoryCommand;
-        public RelayCommand BrowseForLeftDirectoryCommand
-        {
-            get
-            {
-                return this.browseForLeftDirectoryCommand;
-            }
-            set
-            {
-                this.browseForLeftDirectoryCommand = value;
-                this.OnPropertyChanged("BrowseForLeftDirectoryCommand");
-            }
-        }
-
-        RelayCommand browseForRightDirectoryCommand;
-        public RelayCommand BrowseForRightDirectoryCommand
-        {
-            get
-            {
-                return this.browseForRightDirectoryCommand;
-            }
-            set
-            {
-                this.browseForRightDirectoryCommand = value;
-                this.OnPropertyChanged("BrowseForRightDirectoryCommand");
-            }
-        }
-
         private void InitCommands()
         {
             PreviousFileCommand = new RelayCommand(PreviousFile, CanPreviousFile);
             NextFileCommand = new RelayCommand(NextFile, CanNextFile);
+            PreviousMatchingFileCommand = new RelayCommand(PreviousMatchingFile, CanPreviousFile);
+            NextMatchingFileCommand = new RelayCommand(NextMatchingFile, CanNextFile);
             UseLeftFileCommand = new RelayCommand(UseLeftFile, CanUseLeftFile);
             UseRightFileCommand = new RelayCommand(UseRightFile, CanUseRightFile);
             UseLeftFileAndAdvanceCommand = new RelayCommand(UseLeftFileAndAdvance, CanUseLeftFile);
             UseRightFileAndAdvanceCommand = new RelayCommand(UseRightFileAndAdvance, CanUseRightFile);
-            BrowseForOutputDirectoryCommand = new RelayCommand(BrowseForOutputDirectory);
-            BrowseForLeftDirectoryCommand = new RelayCommand(BrowseForLeftDirectory);
-            BrowseForRightDirectoryCommand = new RelayCommand(BrowseForRightDirectory);
         }
         #endregion
 
@@ -855,39 +862,6 @@ namespace WellCompareDir.WPF
         private string GetImageDimensions(ref BitmapImage image)
         {
             return String.Format("{0}x{1}px ({2}x{3} dpi)", image.PixelWidth, image.PixelHeight, image.DpiX, image.DpiY);
-        }
-
-        public string BrowseForFolder(string description, string start)
-        {
-            string selected = null;
-
-            FolderBrowserDialog dlg = new FolderBrowserDialog();
-
-            dlg.Description = description;
-
-            dlg.SelectedPath = start;
-
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                selected = dlg.SelectedPath;
-            }
-
-            return selected;
-        }
-
-        public void BrowseForOutputDirectory(object parameter)
-        {
-            this.OutputDirectoryPath = this.BrowseForFolder("Select output directory path", this.OutputDirectoryPath) ?? this.OutputDirectoryPath;
-        }
-
-        public void BrowseForLeftDirectory(object parameter)
-        {
-            this.LeftDirectoryPath = this.BrowseForFolder("Select left directory path", this.LeftDirectoryPath) ?? this.LeftDirectoryPath;
-        }
-
-        public void BrowseForRightDirectory(object parameter)
-        {
-            this.RightDirectoryPath = this.BrowseForFolder("Select right directory path", this.RightDirectoryPath) ?? this.RightDirectoryPath;
         }
 
         // TODO: create extension method
