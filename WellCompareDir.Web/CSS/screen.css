@@ -114,8 +114,24 @@ h1
 
 h2
 {
-	counter-increment: heading2;
 	margin-left: 2em;
+}
+
+
+h3
+{
+	margin-left: 3em;
+}
+
+h2
+{
+	counter-increment: heading2;
+	counter-reset: heading3;
+}
+
+h3
+{
+	counter-increment: heading3;
 }
 
 h1:before
@@ -128,7 +144,8 @@ h1:before
 	opacity: .25;
 }
 
-h2:before
+h2:before,
+h3:before
 {
 	/* content: counter(heading2) ". "; */
 }
@@ -141,14 +158,18 @@ h1 ~ dl
 	margin-left: 0;
 }
 
-h2 ~ p
+h2 ~ p,
+h3 ~ p
 {
 	margin-left: 4em;
 }
 
 h2 ~ ul,
 h2 ~ ol,
-h2 ~ dl
+h2 ~ dl,
+h3 ~ ul,
+h3 ~ ol,
+h3 ~ dl
 {
 	margin-left: 5em;
 }

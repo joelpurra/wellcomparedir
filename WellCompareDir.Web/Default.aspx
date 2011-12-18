@@ -18,7 +18,6 @@
 </head>
 <body>
 	<div class="container prepend-top">
-
 		<header>
 			<p>
 				<em class="logo">WellCompareDir</em><span class="tagline"><span class="not-necessary">
@@ -26,7 +25,6 @@
 					and copy to a third folder<span class="not-necessary">.</span></span>
 			</p>
 		</header>
-
 		<nav>
 			<ol start="0">
 				<li><a href="#download">Download</a></li>
@@ -36,11 +34,8 @@
 				<li><a href="#about">About</a></li>
 			</ol>
 		</nav>
-
 	</div>
-
 	<hr class="space" />
-
 	<section id="download" class="container">
 		<h1 class="hide">
 			Download</h1>
@@ -55,29 +50,22 @@
 				Download and run installation package. A shortcut will be installed, find it from
 				your start menu to run the program.
 			</p>
+			<h1 style="color: Red;">
+				TODO: COPY INFO HERE
+			</h1>
 			<h2>
-				Latest version: 2010-11-22 15:28</h2>
+				Latest version: xxxx-xx-.....</h2>
 			<ul>
-				<li>Added installer for simpler distriution</li>
-				<li>Match images with different extensions</li>
-				<li>Show only supported image format extensions</li>
-				<li>Make images buttons</li>
-				<li>Simplify shortcut keys</li>
-				<li>Added copyright information</li>
+				<li>xxxx....</li>
+				<li>xxxx....</li>
 			</ul>
 		</div>
-
 		<aside class="span-12 last">
 			<h2>
 				Alternatives</h2>
 			<ul>
-				<li><a href="download/2010-11-22_1528/WellCompareDir.Installer.msi">Installation package</a></li>
-				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_release.7z">Release
-					version (no installation)</a></li>
-				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_debug.7z">Debug
-					version (no installation)</a></li>
-				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_source.7z">Source
-					code</a></li>
+				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir.Installer.msi">Installation package</a></li>
+				<li>...</li>
 			</ul>
 			<h2>
 				Requirements</h2>
@@ -94,7 +82,6 @@
 					tested, please let me know if you have any success.</li>
 			</ul>
 		</aside>
-
 	</section>
 	<section id="screenshots" class="container">
 		<h1>
@@ -168,19 +155,40 @@
 			<p>
 				Speed up your work with shortcut keys, the way WellCompareDir was meant to be used.
 			</p>
+			<h3>
+				Primary shortcut keys</h3>
 			<dl>
+				<dt>Space</dt>
+				<dd>
+					Use the suggested image and advance to the next matching image pair.</dd>
 				<dt>Left arrow key</dt>
 				<dd>
-					Use the left image and advance to the next image.</dd>
+					Use the left image and advance to the next matching image pair.</dd>
 				<dt>Right arrow key</dt>
 				<dd>
-					Use the right image and advance to the next image.</dd>
+					Use the right image and advance to the next matching image pair.</dd>
 				<dt>Down arrow key</dt>
 				<dd>
-					Advance to the next image.</dd>
+					Advance to the next matching image pair.</dd>
 				<dt>Up arrow key</dt>
 				<dd>
-					Back to previous image</dd>
+					Back to the previous matching image pair.</dd>
+			</dl>
+			<h3>
+				Secondary shortcut keys</h3>
+			<dl>
+				<dt>Control + Left arrow key</dt>
+				<dd>
+					Use the left image.</dd>
+				<dt>Control + Right arrow key</dt>
+				<dd>
+					Use the right image.</dd>
+				<dt>Control + Down arrow key</dt>
+				<dd>
+					Advance to the next image.</dd>
+				<dt>Control + Up arrow key</dt>
+				<dd>
+					Back to previous image.</dd>
 			</dl>
 		</section>
 	</section>
@@ -192,9 +200,26 @@
 		</p>
 		<section>
 			<h2>
-				Latest version: 2010-11-22 15:28</h2>
+				Latest version: 2011-xx-xx xx:xx</h2>
 			<ul>
-				<li>Added installer for simpler distriution</li>
+				<li>Skip non-matching files by default</li>
+				<li>More shortcut keys</li>
+			</ul>
+			<ul>
+				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir.Installer.msi">Installation package</a></li>
+				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir_2010-xx-xx_xxxx_release.7z">Release
+					version (no installation)</a></li>
+				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir_2010-xx-xx_xxxx_debug.7z">Debug
+					version (no installation)</a></li>
+				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir_2010-xx-xx_xxxx_source.7z">Source
+					code</a></li>
+			</ul>
+		</section>
+		<section>
+			<h2>
+				2010-11-22 15:28</h2>
+			<ul>
+				<li>Added installer for simpler distribution</li>
 				<li>Match images with different extensions</li>
 				<li>Show only supported image format extensions</li>
 				<li>Make images buttons</li>
@@ -247,14 +272,22 @@
 				Public License</a>.
 		</p>
 	</section>
-
 	<hr class="space" />
-
 	<footer class="container">
             <a href="http://joelpurra.se/Projects/WellCompareDir/">WellCompareDir</a>. Originally
             coded in November 2010 by <a href="http://joelpurra.se/">Joel Purra</a>.
 
 	</footer>
-
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try
+		{
+			var pageTracker = _gat._getTracker("UA-15653943-1");
+			pageTracker._trackPageview();
+		} catch (err) { }
+	</script>
 </body>
 </html>
