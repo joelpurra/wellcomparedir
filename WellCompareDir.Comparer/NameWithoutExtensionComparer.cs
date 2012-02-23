@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-namespace WellCompareDir.Comparer
+﻿namespace WellCompareDir.Comparer
 {
-    // Parts from
-    // http://msdn.microsoft.com/en-us/library/bb546137.aspx
+    using System.Collections.Generic;
+    using System.IO;
 
-    // This implementation defines a simple comparison
-    // between two FileInfo objects. It only compares the name
-    // of the files (excluding extension) being compared and their length in bytes.
+    /// <summary>
+    ///     Parts from
+    ///     http://msdn.microsoft.com/en-us/library/bb546137.aspx
+    ///     This implementation defines a simple comparison
+    ///     between two FileInfo objects. It only compares the name
+    ///     of the files (excluding extension) being compared and their length in bytes.
+    /// </summary>
     public class NameWithoutExtensionComparer : IEqualityComparer<FileInfo>, IComparer<FileInfo>
     {
-        public NameWithoutExtensionComparer() { }
+        public NameWithoutExtensionComparer()
+        {
+        }
 
         public bool Equals(FileInfo x, FileInfo y)
         {
@@ -33,7 +33,7 @@ namespace WellCompareDir.Comparer
                 return false;
             }
 
-            return (this.Compare(x, y) == 0);
+            return this.Compare(x, y) == 0;
         }
 
         // Return a hash that reflects the comparison criteria. According to the 

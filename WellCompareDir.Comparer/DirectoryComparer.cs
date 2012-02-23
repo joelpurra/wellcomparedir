@@ -1,25 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-namespace WellCompareDir.Comparer
+﻿namespace WellCompareDir.Comparer
 {
-    // Parts from
-    // http://msdn.microsoft.com/en-us/library/bb546137.aspx
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+
+    /// <summary>
+    ///     Compare two directories, left and right.
+    ///     Parts from http://msdn.microsoft.com/en-us/library/bb546137.aspx.
+    /// </summary>
     public class DirectoryComparer
     {
-        public IEnumerable<FileInfo> Left { get; private set; }
-        public IEnumerable<FileInfo> Right { get; private set; }
-        public IEqualityComparer<FileInfo> Comparer { get; private set; }
-
         public DirectoryComparer(IEnumerable<FileInfo> left, IEnumerable<FileInfo> right, IEqualityComparer<FileInfo> comparer)
         {
             this.Left = left;
             this.Right = right;
             this.Comparer = comparer;
         }
+
+        public IEnumerable<FileInfo> Left { get; private set; }
+
+        public IEnumerable<FileInfo> Right { get; private set; }
+
+        public IEqualityComparer<FileInfo> Comparer { get; private set; }
 
         // TODO: implement IEqualityComparer<IList<FileInfo>>
         public bool AreIdentical()

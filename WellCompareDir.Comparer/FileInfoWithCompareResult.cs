@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-namespace WellCompareDir.Comparer
+﻿namespace WellCompareDir.Comparer
 {
+    using System.IO;
+
+    /// <summary>
+    ///     File info paired with comparison results.
+    /// </summary>
     public class FileInfoWithCompareResult
     {
-        public bool IsEmpty { get; set; }
-        public FileInfo FileInfo { get; set; }
-        public string DisplayName { get; set; }
-        public bool IsUnique { get; set; }
-
         public FileInfoWithCompareResult()
             : this(true, null, false)
         {
@@ -28,10 +22,18 @@ namespace WellCompareDir.Comparer
             this.IsEmpty = isEmpty;
             this.FileInfo = fileInfo;
 
-            this.DisplayName = (this.FileInfo == null ? "" : this.FileInfo.Name ?? "(null)");
+            this.DisplayName = this.FileInfo == null ? string.Empty : this.FileInfo.Name ?? "(null)";
 
             this.IsUnique = isUnique;
         }
+
+        public bool IsEmpty { get; set; }
+
+        public FileInfo FileInfo { get; set; }
+
+        public string DisplayName { get; set; }
+
+        public bool IsUnique { get; set; }
 
         public override string ToString()
         {

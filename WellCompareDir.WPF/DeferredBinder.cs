@@ -88,7 +88,7 @@ namespace JulMar.Windows
         /// Target Dependency Property
         /// </summary>
         public static readonly DependencyProperty TargetProperty =
-            DependencyProperty.Register("Target", typeof (object), typeof (DeferredBinder),
+            DependencyProperty.Register("Target", typeof(object), typeof(DeferredBinder),
                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
 
         /// <summary>

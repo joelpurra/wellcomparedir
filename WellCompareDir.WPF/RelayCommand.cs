@@ -1,8 +1,8 @@
 ﻿namespace WellCompareDir.WPF
 {
     using System;
-    using System.Windows.Input;
     using System.Diagnostics;
+    using System.Windows.Input;
 
     // From
     // http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
