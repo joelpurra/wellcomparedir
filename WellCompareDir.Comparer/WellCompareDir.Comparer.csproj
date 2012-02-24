@@ -54,8 +54,8 @@
       <Link>COPYING</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\joelpurra.se.url">
-      <Link>joelpurra.se.url</Link>
+    <None Include="..\joelpurra.com.url">
+      <Link>joelpurra.com.url</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="..\WellCompareDir by Joel Purra Homepage.url">

@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A1E2EE
 	ProjectSection(SolutionItems) = preProject
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
 		COPYING = COPYING
-		joelpurra.se.url = joelpurra.se.url
+		joelpurra.com.url = joelpurra.com.url
 		WellCompareDir by Joel Purra Homepage.url = WellCompareDir by Joel Purra Homepage.url
 	EndProjectSection
 EndProject

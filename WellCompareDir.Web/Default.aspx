@@ -4,7 +4,7 @@
 <html class="no-js" lang="en-us">
 <head>
 	<meta charset="utf-8" />
-	<title>joelpurra.se/Projects/WellCompareDir by Joel Purra</title>
+	<title>joelpurra.com/Projects/WellCompareDir by Joel Purra</title>
 	<meta name="description" content="WellCompareDir is a tool to compare and select images with the same name from two folders, and copy to a third folder." />
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
@@ -267,15 +267,15 @@
 			the most effective way.
 		</p>
 		<p>
-			WellCompareDir copyright 2010 <a href="http://joelpurra.se/">Joel Purra</a>. Released
+			WellCompareDir copyright 2010 <a href="http://joelpurra.com/">Joel Purra</a>. Released
 			as free software under the <a href="http://www.gnu.org/licenses/gpl.html">GNU General
 				Public License</a>.
 		</p>
 	</section>
 	<hr class="space" />
 	<footer class="container">
-            <a href="http://joelpurra.se/Projects/WellCompareDir/">WellCompareDir</a>. Originally
-            coded in November 2010 by <a href="http://joelpurra.se/">Joel Purra</a>.
+            <a href="http://joelpurra.com/Projects/WellCompareDir/">WellCompareDir</a>. Originally
+            coded in November 2010 by <a href="http://joelpurra.com/">Joel Purra</a>.
 
 	</footer>
 	<script type="text/javascript">

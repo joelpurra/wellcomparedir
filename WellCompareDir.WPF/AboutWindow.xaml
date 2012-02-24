@@ -15,12 +15,12 @@
             </TextBlock>
             <TextBlock>
                 <Image Source="/WellCompareDir.WPF;component/Images/pictures.png" Stretch="None" VerticalAlignment="Center" />
-                <Hyperlink NavigateUri="http://joelpurra.se/Projects/WellCompareDir/" BaselineAlignment="Center" RequestNavigate="Hyperlink_RequestNavigate">http://joelpurra.se/Projects/WellCompareDir/</Hyperlink>
+                <Hyperlink NavigateUri="http://joelpurra.com/Projects/WellCompareDir/" BaselineAlignment="Center" RequestNavigate="Hyperlink_RequestNavigate">http://joelpurra.com/Projects/WellCompareDir/</Hyperlink>
             </TextBlock>
             <LineBreak />
             <LineBreak />
             <TextBlock TextWrapping="Wrap">
-                WellCompareDir copyright 2010 <Hyperlink NavigateUri="http://joelpurra.se/" RequestNavigate="Hyperlink_RequestNavigate">Joel Purra</Hyperlink>. Released as free software under the <Hyperlink NavigateUri="http://www.gnu.org/licenses/gpl.html" RequestNavigate="Hyperlink_RequestNavigate">GNU General Public License</Hyperlink>:
+                WellCompareDir copyright 2010 <Hyperlink NavigateUri="http://joelpurra.com/" RequestNavigate="Hyperlink_RequestNavigate">Joel Purra</Hyperlink>. Released as free software under the <Hyperlink NavigateUri="http://www.gnu.org/licenses/gpl.html" RequestNavigate="Hyperlink_RequestNavigate">GNU General Public License</Hyperlink>:
             </TextBlock>
             <Border BorderBrush="LightGray" BorderThickness="1" Margin="0,5" SnapsToDevicePixels="True">
                 <ScrollViewer Height="115" Padding="5">
