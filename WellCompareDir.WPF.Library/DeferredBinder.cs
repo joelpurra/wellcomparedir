@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Threading;
 
 namespace JulMar.Windows
 {
     /// <summary>
-    /// This class provides a simple deferred wrapper which binds two properties together and 
+    /// This class provides a simple deferred wrapper which binds two properties together and
     /// transfers the values on a timeout interval
     /// </summary>
     /// <example>
@@ -64,7 +64,7 @@ namespace JulMar.Windows
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, OnSourceChanged));
 
         /// <summary>
-        /// Gets or sets the Source property.  
+        /// Gets or sets the Source property.
         /// </summary>
         public object Source
         {
@@ -92,7 +92,7 @@ namespace JulMar.Windows
                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
 
         /// <summary>
-        /// Gets or sets the Target property.  This dependency property 
+        /// Gets or sets the Target property.  This dependency property
         /// indicates ....
         /// </summary>
         public object Target
@@ -131,7 +131,7 @@ namespace JulMar.Windows
         }
 
         /// <summary>
-        /// When implemented in a derived class, creates a new instance of the <see cref="T:System.Windows.Freezable"/> derived class. 
+        /// When implemented in a derived class, creates a new instance of the <see cref="T:System.Windows.Freezable"/> derived class.
         /// </summary>
         /// <returns>
         /// The new instance.

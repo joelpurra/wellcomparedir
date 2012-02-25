@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellCompareDir.WPF", "WellCompareDir.WPF\WellCompareDir.WPF.csproj", "{ED788065-76FE-41AB-9135-79A85248879C}"
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellCompareDir.Web", "WellCompareDir.Web\WellCompareDir.Web.csproj", "{4B6B3593-C25E-41D5-B84F-89579A48C8B7}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WellCompareDir.Installer", "WellCompareDir.Installer\WellCompareDir.Installer.vdproj", "{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellCompareDir.WPF.Library", "WellCompareDir.WPF.Library\WellCompareDir.WPF.Library.csproj", "{A3A15BFC-165B-4361-817E-790041AE9E52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +80,18 @@ Global
 		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|Mixed Platforms.ActiveCfg = Release
 		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|x64.ActiveCfg = Release
 		{95B15A32-D85E-4C57-B2C7-DCC3BD1C4683}.Release|x86.ActiveCfg = Release
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3A15BFC-165B-4361-817E-790041AE9E52}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
