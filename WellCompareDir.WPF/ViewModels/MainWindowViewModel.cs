@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
-    using System.ComponentModel;
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
@@ -13,11 +12,12 @@
     using WellCompareDir.WPF.Library;
     using WellCompareDir.WPF.Library.Extensions;
     using WellCompareDir.WPF.Properties;
+    using WellCompareDir.WPF.ViewModels;
 
     /// <summary>
     /// Backing to the main WPF window.
     /// </summary>
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : ViewModelBase
     {
         private const int MaxComparisons = 4;
 
@@ -27,7 +27,7 @@
         private DirectoryInfo outputDirectory = null;
 
         private List<string> DirectoryPaths;
-        private ObservableCollection<ImageComparisonView> comparisions;
+        private ObservableCollection<ImageComparisonViewModel> comparisions;
 
         private RelayCommand addComparisonCommand;
         private RelayCommand previousFileCommand;
@@ -40,7 +40,7 @@
 
         public MainWindowViewModel()
         {
-            this.comparisions = new ObservableCollection<ImageComparisonView>();
+            this.comparisions = new ObservableCollection<ImageComparisonViewModel>();
 
             this.Status = string.Empty;
             this.ReadSettings();
@@ -62,7 +62,7 @@
 
         public void AddComparison(int i)
         {
-            this.comparisions.Add(new ImageComparisonView());
+            this.comparisions.Add(new ImageComparisonViewModel());
 
             this.GetDirectoryPathOrDefault(i);
         }
@@ -77,15 +77,12 @@
 
         private IEnumerable<ImageComparisonViewModel> GetComparisons()
         {
-            foreach (ImageComparisonView icvm in this.comparisions)
-            {
-                yield return icvm.DataContext as ImageComparisonViewModel;
-            }
+            return this.comparisions;
         }
 
         private ImageComparisonViewModel GetComparison(int i)
         {
-            return this.comparisions[i].DataContext as ImageComparisonViewModel;
+            return this.comparisions[i];
         }
 
         private static IEnumerable<string> StringCollectionAsIEnumerableString(StringCollection collection)
@@ -103,11 +100,9 @@
             return strs;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         #region Properties
 
-        public ObservableCollection<ImageComparisonView> Comparisons
+        public ObservableCollection<ImageComparisonViewModel> Comparisons
         {
             get
             {
@@ -368,22 +363,6 @@
 
         #endregion
 
-        #region The usual INPC implementation
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-
-            this.HandlePropertyChange(propertyName);
-        }
-
-        #endregion
-
         #region Misc
 
         public string GetTempDirectory()
@@ -397,7 +376,7 @@
 
         #region Property change chaining
 
-        private void HandlePropertyChange(string propertyName)
+        protected override void HandlePropertyChange(string propertyName)
         {
             if (propertyName == "SelectedFileIndex")
             {

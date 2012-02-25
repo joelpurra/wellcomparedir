@@ -40,12 +40,6 @@
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <!--<ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    TODO: use the view model only instead?
-                    <local:ImageComparisonView />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>-->
         </ItemsControl>
 
         <!--<ContentPresenter Content="{Binding FormFields}" />-->
