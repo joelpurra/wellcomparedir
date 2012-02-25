@@ -5,10 +5,7 @@
     <Setting Name="OutputDirectoryPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="LeftDirectoryPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="RightDirectoryPath" Type="System.String" Scope="User">
+    <Setting Name="DirectoryPaths" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="MainWindowViewWidth" Type="System.Double" Scope="User">

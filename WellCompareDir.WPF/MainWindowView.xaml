@@ -7,6 +7,7 @@
         xmlns:scroll="clr-namespace:SoftwareArchitects.Windows.Controls;assembly=SoftwareArchitects.Windows.Controls.ScrollSynchronizer"
         xmlns:Comparer="clr-namespace:WellCompareDir.Comparer;assembly=WellCompareDir.Comparer"
         xmlns:local="clr-namespace:WellCompareDir.WPF"
+        xmlns:lib="clr-namespace:WellCompareDir.WPF.Library;assembly=WellCompareDir.WPF.Library"
         Title="WellCompareDir by Joel Purra"
         Icon="/WellCompareDir.WPF;component/Images/pictures.png"
         MinWidth="500"
@@ -22,45 +23,40 @@
     </i:Interaction.Behaviors>
 
     <Window.InputBindings>
-        <local:RelayKeyBinding Key="Up" Modifiers="Control" CommandBinding="{Binding PreviousFileCommand}"/>
-        <local:RelayKeyBinding Key="Down" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
-        <local:RelayKeyBinding Key="Up" CommandBinding="{Binding PreviousMatchingFileCommand}"/>
-        <local:RelayKeyBinding Key="Down" CommandBinding="{Binding NextMatchingFileCommand}"/>
-        <local:RelayKeyBinding Key="Left" Modifiers="Control" CommandBinding="{Binding UseLeftFileCommand}"/>
-        <local:RelayKeyBinding Key="Right" Modifiers="Control" CommandBinding="{Binding UseRightFileCommand}"/>
-        <local:RelayKeyBinding Key="Left" CommandBinding="{Binding UseLeftFileAndAdvanceCommand}"/>
-        <local:RelayKeyBinding Key="Right" CommandBinding="{Binding UseRightFileAndAdvanceCommand}"/>
+        <lib:RelayKeyBinding Key="Up" Modifiers="Control" CommandBinding="{Binding PreviousFileCommand}"/>
+        <lib:RelayKeyBinding Key="Down" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
+        <lib:RelayKeyBinding Key="Up" CommandBinding="{Binding PreviousMatchingFileCommand}"/>
+        <lib:RelayKeyBinding Key="Down" CommandBinding="{Binding NextMatchingFileCommand}"/>
+        <!--<local:RelayKeyBinding Key="Left" Modifiers="Control" CommandBinding="{Binding UseLeftFileCommand}"/>-->
+        <!--<local:RelayKeyBinding Key="Right" Modifiers="Control" CommandBinding="{Binding UseRightFileCommand}"/>-->
+        <!--<local:RelayKeyBinding Key="Left" CommandBinding="{Binding UseLeftFileAndAdvanceCommand}"/>-->
+        <!--<local:RelayKeyBinding Key="Right" CommandBinding="{Binding UseRightFileAndAdvanceCommand}"/>-->
     </Window.InputBindings>
 
-    <Window.Resources>
-        <Style x:Key="fileCompareStyle">
-            <Style.Resources>
-                <!-- Background of selected item when focussed -->
-                <!--<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />-->
-                <!-- Background of selected item when not focussed -->
-                <!--<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Green" />-->
-            </Style.Resources>
-        </Style>
-        <DataTemplate x:Key="fileCompareTemplate">
-            <DockPanel Name="container">
-                <TextBlock Name="text" Text="{Binding Path=DisplayName}"/>
-            </DockPanel>
-
-            <DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding Path=IsUnique}">
-                    <DataTrigger.Value>
-                        <sys:Boolean>True</sys:Boolean>
-                    </DataTrigger.Value>
-                    <Setter TargetName="container" Property="Opacity" Value="0.3" />
-                </DataTrigger>
-            </DataTemplate.Triggers>
-        </DataTemplate>
-    </Window.Resources>
-
     <DockPanel Margin="10">
+        <ItemsControl ItemsSource="{Binding Comparisons}" DockPanel.Dock="Top">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <!--<ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    TODO: use the view model only instead?
+                    <local:ImageComparisonView />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>-->
+        </ItemsControl>
+
+        <!--<ContentPresenter Content="{Binding FormFields}" />-->
+
         <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
             <Label Content="Output:" FontWeight="Bold" Padding="0,5,5,5" />
             <Button Command="{x:Static local:MainWindowView.OpenAboutWindowCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
+                <Image Source="/WellCompareDir.WPF;component/Images/information.png" Stretch="None" />
+            </Button>
+            <Button Command="{Binding AddComparisonCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
+                <!--TODO: change image-->
                 <Image Source="/WellCompareDir.WPF;component/Images/information.png" Stretch="None" />
             </Button>
             <Button Command="{x:Static local:MainWindowView.BrowseForOutputDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
@@ -68,138 +64,5 @@
             </Button>
             <Label Name="outputDirectoryPath" Content="{Binding OutputDirectoryPath}" />
         </DockPanel>
-
-        <Grid Height="Auto" DockPanel.Dock="Top">
-            <Grid.Resources>
-                <!-- From -->
-                <!-- http://www.codeproject.com/KB/WPF/ScrollSynchronization.aspx -->
-                <Style TargetType="ScrollViewer">
-                    <Setter Property="scroll:ScrollSynchronizer.ScrollGroup" Value="Group1" />
-                </Style>
-            </Grid.Resources>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="Auto" />
-                <!--<RowDefinition Height="5" />-->
-                <!--<RowDefinition Height="Auto" />-->
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <DockPanel Grid.Row="0" Grid.Column="0">
-                <Label Content="Left:" FontWeight="Bold" Padding="0,5,5,5" />
-                <Button Command="{x:Static local:MainWindowView.BrowseForLeftDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
-                    <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
-                </Button>
-                <Label Name="leftDirectoryPath" Content="{Binding LeftDirectoryPath}" />
-            </DockPanel>
-            <DockPanel Grid.Row="0" Grid.Column="2">
-                <Label Content="Right:" FontWeight="Bold" Padding="0,5,5,5" />
-                <Button Command="{x:Static local:MainWindowView.BrowseForRightDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
-                    <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
-                </Button>
-                <Label Name="rightDirectoryPath" Content="{Binding RightDirectoryPath}" />
-            </DockPanel>
-
-            <ListBox Name="leftFiles" Grid.Row="2" Grid.Column="0"
-                HorizontalContentAlignment="Stretch"
-                ItemsSource="{Binding LeftFiles}"
-                SelectedIndex="{Binding SelectedFileIndex}"
-                ItemTemplate="{StaticResource fileCompareTemplate}"
-                Style="{StaticResource fileCompareStyle}" SelectionChanged="leftFiles_SelectionChanged">
-            </ListBox>
-            <ListBox Name="rightFiles" Grid.Row="2" Grid.Column="2"
-                HorizontalContentAlignment="Stretch"
-                ItemsSource="{Binding RightFiles}"
-                SelectedIndex="{Binding SelectedFileIndex}"
-                ItemTemplate="{StaticResource fileCompareTemplate}"
-                Style="{StaticResource fileCompareStyle}" SelectionChanged="rightFiles_SelectionChanged">
-            </ListBox>
-
-            <Button Name="useLeftButton" Command="{Binding UseLeftFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
-                <Image Name="leftImage" Source="{Binding LeftImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" />
-            </Button>
-            <Button Name="useRightButton" Command="{Binding UseRightFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
-                <Image Name="rightImage" Source="{Binding RightImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" />
-            </Button>
-
-            <Grid Grid.Row="6" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="18" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Image Grid.Row="0" Grid.Column="0" Source="/WellCompareDir.WPF;component/Images/bullet_go.png" Stretch="None" Visibility="{Binding IsLeftRecommended, Converter={StaticResource VisibilityOfBool}}" />
-                <Label Grid.Row="0" Grid.Column="1" Padding="0,5,5,5">Dimensions:</Label>
-                <Label Grid.Row="0" Grid.Column="2" Content="{Binding LeftImageDimensions}"/>
-                <Label Grid.Row="0" Grid.Column="3">Size:</Label>
-                <Label Grid.Row="0" Grid.Column="4" Content="{Binding LeftFileSize}"/>
-            </Grid>
-
-            <Grid Grid.Row="6" Grid.Column="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="18" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Image Grid.Row="0" Grid.Column="0" Source="/WellCompareDir.WPF;component/Images/bullet_go.png" Stretch="None" Visibility="{Binding IsRightRecommended, Converter={StaticResource VisibilityOfBool}}" />
-                <Label Grid.Row="0" Grid.Column="1" Padding="0,5,5,5">Dimensions:</Label>
-                <Label Grid.Row="0" Grid.Column="2" Content="{Binding RightImageDimensions}"/>
-                <Label Grid.Row="0" Grid.Column="3">Size:</Label>
-                <Label Grid.Row="0" Grid.Column="4" Content="{Binding RightFileSize}"/>
-            </Grid>
-
-            <!--<Button Command="{Binding UseLeftFileAndAdvanceCommand}" Grid.Row="8" Grid.Column="0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="18" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="18" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="0" Grid.Column="0" Source="/WellCompareDir.WPF;component/Images/bullet_go.png" Stretch="None" Visibility="{Binding IsLeftRecommended, Converter={StaticResource VisibilityOfBool}}" />
-                    <Label Grid.Row="0" Grid.Column="1" Padding="0,5">Use left image</Label>
-                </Grid>
-            </Button>-->
-            <!--<Button Command="{Binding UseRightFileAndAdvanceCommand}" Grid.Row="8" Grid.Column="2">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="18" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="18" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="0" Grid.Column="0" Source="/WellCompareDir.WPF;component/Images/bullet_go.png" Stretch="None" Visibility="{Binding IsRightRecommended, Converter={StaticResource VisibilityOfBool}}" />
-                    <Label Grid.Row="0" Grid.Column="1" Padding="0,5">Use right image</Label>
-                </Grid>
-            </Button>-->
-        </Grid>
     </DockPanel>
 </Window>

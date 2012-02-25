@@ -1,4 +1,4 @@
-﻿namespace WellCompareDir.WPF
+﻿namespace WellCompareDir.WPF.Library
 {
     using System;
     using System.Windows.Input;

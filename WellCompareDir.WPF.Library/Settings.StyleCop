@@ -1,0 +1,12 @@
+﻿<StyleCopSettings Version="4.3">
+  <SourceFileList>
+    <SourceFile>DeferredBinder.cs</SourceFile>
+    <SourceFile>DelegateCommand.cs</SourceFile>
+    <SourceFile>RelayCommand.cs</SourceFile>
+    <Settings>
+      <GlobalSettings>
+        <BooleanProperty Name="RulesEnabledByDefault">False</BooleanProperty>
+      </GlobalSettings>
+    </Settings>
+  </SourceFileList>
+</StyleCopSettings>
