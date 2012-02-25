@@ -1,9 +1,9 @@
-﻿namespace WellCompareDir.WPF
+﻿using WellCompareDir.WPF.ViewModels;
+namespace WellCompareDir.WPF
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.IO;
     using System.Windows.Input;
     using System.Windows.Media.Imaging;
@@ -12,7 +12,7 @@
     using WellCompareDir.WPF.Library.Extensions;
     using WellCompareDir.WPF.Library.Helpers;
 
-    public class ImageComparisonViewModel
+    public class ImageComparisonViewModel : ViewModelBase
     {
         private ObservableCollection<FileInfoWithCompareResult> files;
         private FileInfoWithCompareResult selectedFile;
@@ -251,7 +251,7 @@
             //this.PARENTOBJECT.NextFile(parameter);
         }
 
-        private void HandlePropertyChange(string propertyName)
+        protected override void HandlePropertyChange(string propertyName)
         {
             if (propertyName == "DirectoryPath")
             {
@@ -355,23 +355,5 @@
             this.UseFileCommand = new RelayCommand(this.UseFile, this.CanUseFile);
             this.UseFileAndAdvanceCommand = new RelayCommand(this.UseFileAndAdvance, this.CanUseFile);
         }
-
-        #region The usual INPC implementation
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-
-            this.HandlePropertyChange(propertyName);
-        }
-
-        #endregion
     }
 }
