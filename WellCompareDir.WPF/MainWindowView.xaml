@@ -1,4 +1,5 @@
 <Window x:Class="WellCompareDir.WPF.MainWindowView"
+        x:Name="window"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -34,29 +35,34 @@
     </Window.InputBindings>
 
     <DockPanel Margin="10">
-        <ItemsControl ItemsSource="{Binding Comparisons}" DockPanel.Dock="Top">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-
-        <!--<ContentPresenter Content="{Binding FormFields}" />-->
-
-        <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
+        <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0" Height="Auto">
             <Label Content="Output:" FontWeight="Bold" Padding="0,5,5,5" />
             <Button Command="{x:Static local:MainWindowView.OpenAboutWindowCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
                 <Image Source="/WellCompareDir.WPF;component/Images/information.png" Stretch="None" />
             </Button>
             <Button Command="{Binding AddComparisonCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
-                <!--TODO: change image-->
-                <Image Source="/WellCompareDir.WPF;component/Images/information.png" Stretch="None" />
+                <Image Source="/WellCompareDir.WPF;component/Images/picture_add.png" Stretch="None" />
             </Button>
             <Button Command="{x:Static local:MainWindowView.BrowseForOutputDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
                 <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
             </Button>
             <Label Name="outputDirectoryPath" Content="{Binding OutputDirectoryPath}" />
         </DockPanel>
+
+        <Border BorderThickness="5" BorderBrush="DarkCyan">
+            <ItemsControl ItemsSource="{Binding Comparisons}" DockPanel.Dock="Top" VerticalAlignment="Stretch">
+                <ItemsControl.Resources>
+                    <Style TargetType="local:ImageComparisonView">
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                    </Style>
+                </ItemsControl.Resources>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid VerticalAlignment="Stretch" Columns="{Binding ComparisonColumns}" Rows="{Binding ComparisonRows}" DataContext="{Binding ElementName=window}" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Border>
     </DockPanel>
 </Window>

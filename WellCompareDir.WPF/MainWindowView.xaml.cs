@@ -1,11 +1,35 @@
 namespace WellCompareDir.WPF
 {
+    using System.ComponentModel;
     using System.Windows;
     using System.Windows.Input;
     using WellCompareDir.WPF.Library.Helpers;
 
-    public partial class MainWindowView : Window
+    public partial class MainWindowView : Window, INotifyPropertyChanged
     {
+        #region The usual INPC implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+            this.HandlePropertyChange(propertyName);
+        }
+
+        private void HandlePropertyChange(string propertyName)
+        {
+            // Nothing needs to be done here right now
+        }
+
+        #endregion
+
         public static RoutedUICommand OpenAboutWindowCommand = new RoutedUICommand();
         public static RoutedUICommand BrowseForOutputDirectoryCommand = new RoutedUICommand();
 
@@ -14,6 +38,35 @@ namespace WellCompareDir.WPF
             InitializeComponent();
 
             this.InitCommands();
+
+            this.ListenToModel();
+        }
+
+        private void ListenToModel()
+        {
+            this.Model.Comparisons.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(Comparisons_CollectionChanged);
+        }
+
+        void Comparisons_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnPropertyChanged("ComparisonColumns");
+            this.OnPropertyChanged("ComparisonRows");
+        }
+
+        public int ComparisonColumns
+        {
+            get
+            {
+                return this.Model.Comparisons.Count < 2 ? 1 : 2;
+            }
+        }
+
+        public int ComparisonRows
+        {
+            get
+            {
+                return this.Model.Comparisons.Count < 3 ? 1 : 2;
+            }
         }
 
         private MainWindowViewModel Model

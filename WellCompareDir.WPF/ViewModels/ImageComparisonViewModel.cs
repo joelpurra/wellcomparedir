@@ -1,4 +1,4 @@
-﻿using WellCompareDir.WPF.ViewModels;
+using WellCompareDir.WPF.ViewModels;
 namespace WellCompareDir.WPF
 {
     using System;
@@ -24,6 +24,7 @@ namespace WellCompareDir.WPF
         private int selectedFileIndex;
         private bool selectedFileIndexIsInRange;
 
+        private RelayCommand removeComparisonCommand;
         private RelayCommand useFileCommand;
         private RelayCommand useFileAndAdvanceCommand;
 
@@ -201,6 +202,21 @@ namespace WellCompareDir.WPF
             }
         }
 
+        public RelayCommand RemoveComparisonCommand
+        {
+            get
+            {
+                return this.removeComparisonCommand;
+            }
+
+            set
+            {
+                this.removeComparisonCommand = value;
+                this.OnPropertyChanged("RemoveComparisonCommand");
+            }
+        }
+
+
         public RelayCommand UseFileCommand
         {
             get
@@ -227,6 +243,11 @@ namespace WellCompareDir.WPF
                 this.useFileAndAdvanceCommand = value;
                 this.OnPropertyChanged("UseFileAndAdvanceCommand");
             }
+        }
+
+        public void RemoveComparison(object parameter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public bool CanUseFile(object parameter = null)
@@ -354,6 +375,8 @@ namespace WellCompareDir.WPF
         {
             this.UseFileCommand = new RelayCommand(this.UseFile, this.CanUseFile);
             this.UseFileAndAdvanceCommand = new RelayCommand(this.UseFileAndAdvance, this.CanUseFile);
+
+            this.RemoveComparisonCommand = new RelayCommand(this.RemoveComparison, RelayCommandHelper.CanAlwaysExecute);
         }
     }
 }
