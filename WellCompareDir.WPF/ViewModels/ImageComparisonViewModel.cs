@@ -376,7 +376,7 @@ namespace WellCompareDir.WPF
             this.UseFileCommand = new RelayCommand(this.UseFile, this.CanUseFile);
             this.UseFileAndAdvanceCommand = new RelayCommand(this.UseFileAndAdvance, this.CanUseFile);
 
-            this.RemoveComparisonCommand = new RelayCommand(this.RemoveComparison, RelayCommandHelper.CanAlwaysExecute);
+            this.RemoveComparisonCommand = new RelayCommand(this.RemoveComparison);
         }
     }
 }
