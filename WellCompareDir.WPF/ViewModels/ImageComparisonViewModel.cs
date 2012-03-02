@@ -258,18 +258,12 @@ namespace WellCompareDir.WPF
 
         public void UseFile(object parameter = null)
         {
-            FileInfoWithCompareResult file = this.Files[this.SelectedFileIndex];
-
-            // TODO: actually use file
-            //this.PARENTOBJECT.UseFile(file);
+            this.UseFileCommand.Execute(this.SelectedFile);
         }
 
         public void UseFileAndAdvance(object parameter = null)
         {
-            this.UseFile(parameter);
-
-            // TODO: actually go to next file
-            //this.PARENTOBJECT.NextFile(parameter);
+            this.UseFileAndAdvanceCommand.Execute(this.SelectedFile);
         }
 
         protected override void HandlePropertyChange(string propertyName)
@@ -277,6 +271,7 @@ namespace WellCompareDir.WPF
             if (propertyName == "DirectoryPath")
             {
                 this.FileInfos.Clear();
+                this.SelectedFileIndex = -1;
 
                 try
                 {
@@ -294,15 +289,12 @@ namespace WellCompareDir.WPF
 
                 // TODO: actually update files
                 //this.PARENTOBJECT.UpdateFileLists();
-
-                this.SelectedFileIndex = this.files.Count > 0 ? 0 : -1;
-                CommandManager.InvalidateRequerySuggested();
             }
             else if (propertyName == "SelectedFileIndex")
             {
                 this.SelectedFileIndexIsInRange =
                     this.SelectedFileIndex != -1
-                    && this.SelectedFileIndex < this.files.Count;
+                    && this.SelectedFileIndex < this.Files.Count;
 
                 CommandManager.InvalidateRequerySuggested();
             }

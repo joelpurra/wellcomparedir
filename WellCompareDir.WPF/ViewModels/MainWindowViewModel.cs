@@ -1,4 +1,4 @@
-﻿namespace WellCompareDir.WPF
+namespace WellCompareDir.WPF
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,7 @@
     /// </summary>
     public class MainWindowViewModel : ViewModelBase
     {
+        // TODO: make configuable from the view
         private const int MaxComparisons = 4;
 
         private string status;
@@ -441,7 +442,7 @@
 
         #region UpdateFileLists
 
-        private void UpdateFileLists()
+        public void UpdateFileLists()
         {
             NameWithoutExtensionComparer comparer = new NameWithoutExtensionComparer();
 

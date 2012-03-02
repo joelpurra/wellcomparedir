@@ -23,6 +23,10 @@
         <Framework:AutoWireUpViewModelBehavior />
     </i:Interaction.Behaviors>
 
+    <!--<Window.CommandBindings>
+        <CommandBinding Command="" Executed="" />
+    </Window.CommandBindings>-->
+
     <Window.InputBindings>
         <lib:RelayKeyBinding Key="Up" Modifiers="Control" CommandBinding="{Binding PreviousFileCommand}"/>
         <lib:RelayKeyBinding Key="Down" Modifiers="Control" CommandBinding="{Binding NextFileCommand}"/>
@@ -49,20 +53,18 @@
             <Label Name="outputDirectoryPath" Content="{Binding OutputDirectoryPath}" />
         </DockPanel>
 
-        <Border BorderThickness="5" BorderBrush="DarkCyan">
-            <ItemsControl ItemsSource="{Binding Comparisons}" DockPanel.Dock="Top" VerticalAlignment="Stretch">
-                <ItemsControl.Resources>
-                    <Style TargetType="local:ImageComparisonView">
-                        <Setter Property="Margin" Value="5" />
-                        <Setter Property="VerticalAlignment" Value="Stretch" />
-                    </Style>
-                </ItemsControl.Resources>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid VerticalAlignment="Stretch" Columns="{Binding ComparisonColumns}" Rows="{Binding ComparisonRows}" DataContext="{Binding ElementName=window}" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </Border>
+        <ItemsControl ItemsSource="{Binding Comparisons}" DockPanel.Dock="Top" VerticalAlignment="Stretch" local:ImageComparisonView.DirectorySelected="ItemsControl_DirectorySelected">
+            <ItemsControl.Resources>
+                <Style TargetType="local:ImageComparisonView">
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                </Style>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid VerticalAlignment="Stretch" Columns="{Binding ComparisonColumns}" Rows="{Binding ComparisonRows}" DataContext="{Binding ElementName=window}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </DockPanel>
 </Window>
