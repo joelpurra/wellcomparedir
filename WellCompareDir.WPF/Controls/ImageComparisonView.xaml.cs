@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WellCompareDir.WPF.Library.Helpers;
 
@@ -31,6 +32,15 @@ namespace WellCompareDir.WPF
             }
         }
 
+        public static readonly RoutedEvent DirectorySelectedEvent = EventManager.RegisterRoutedEvent("DirectorySelected", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ImageComparisonView));
+
+        // Provide CLR accessors for the event
+        public event RoutedEventHandler DirectorySelected
+        {
+            add { AddHandler(DirectorySelectedEvent, value); }
+            remove { RemoveHandler(DirectorySelectedEvent, value); }
+        }
+
         private void InitCommands()
         {
             this.CommandBindings.Add(new CommandBinding(BrowseForDirectoryCommand, this.BrowseForDirectory, RoutedEventHelper.CanAlwaysExecute));
@@ -42,6 +52,8 @@ namespace WellCompareDir.WPF
             ImageComparisonViewModel icvm = this.DataContext as ImageComparisonViewModel;
 
             icvm.DirectoryPath = FolderHelper.BrowseForFolder("Select left directory path", icvm.DirectoryPath) ?? icvm.DirectoryPath;
+
+            this.RaiseEvent(new RoutedEventArgs(DirectorySelectedEvent, this));
         }
     }
 }

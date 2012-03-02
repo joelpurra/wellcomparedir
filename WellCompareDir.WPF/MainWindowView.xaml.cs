@@ -31,6 +31,7 @@
         #endregion
 
         public static RoutedUICommand OpenAboutWindowCommand = new RoutedUICommand();
+
         public static RoutedUICommand BrowseForOutputDirectoryCommand = new RoutedUICommand();
 
         public MainWindowView()
@@ -97,6 +98,11 @@
             Window aboutWindow = new AboutWindow();
             aboutWindow.Owner = this;
             aboutWindow.ShowDialog();
+        }
+
+        private void ItemsControl_DirectorySelected(object sender, RoutedEventArgs e)
+        {
+            this.Model.UpdateFileLists();
         }
     }
 }

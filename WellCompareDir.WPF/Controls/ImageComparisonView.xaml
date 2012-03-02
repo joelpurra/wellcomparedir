@@ -69,6 +69,7 @@
             <Button Command="{Binding RemoveComparisonCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
                 <Image Source="/WellCompareDir.WPF;component/Images/picture_delete.png" Stretch="None" />
             </Button>
+            <!-- TODO: use one "global" BrowseForDirectoryCommand? -->
             <Button Command="{x:Static local:ImageComparisonView.BrowseForDirectoryCommand}" DockPanel.Dock="Right" Padding="3,0" Margin="5,0,0,0">
                 <Image Source="/WellCompareDir.WPF;component/Images/folder.png" Stretch="None" />
             </Button>
@@ -85,7 +86,7 @@
         </ListBox>
 
         <Button Name="useButton" Command="{Binding UseFileAndAdvanceCommand}" Grid.Row="4" Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
-            <Image Name="image" Source="{Binding ImageSource}" Width="{Binding ElementName=Container,Path=ActualWidth}" />
+            <Image Name="image" Source="{Binding ImageSource}" Width="{Binding ElementName=Container, Path=ActualWidth}" />
         </Button>
 
         <Grid Grid.Row="6" Grid.Column="0">
