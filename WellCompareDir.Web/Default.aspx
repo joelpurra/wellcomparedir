@@ -91,7 +91,7 @@
 		<p>
 			<img src="Screenshot/2010-11-22/wellcomparedir_main_window_2010-11-22_1528_01.jpg"
 				alt="Screenshot of the main window of WellCompareDir from 2010-11-22" /><br />
-			The main window
+			Screenshot of the main window, showing a "bad image" to the left and a "good image" to the right. The right file is preferred and will be copied to the output directory.
 		</p>
 	</section>
 	<section id="manual" class="container">
