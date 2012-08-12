@@ -8,3 +8,8 @@
 *.html text eol=crlf
 *.css text eol=crlf
 *.aspx text eol=crlf
+*.url text eol=crlf
+*.settings text eol=crlf
+*.vdproj text eol=crlf
+*.config text eol=crlf
+*.txt text eol=crlf
