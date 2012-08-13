@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" ResponseEncoding="UTF-8" %>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="no-js" lang="en-us">
 <head>
 	<meta charset="utf-8" />
@@ -91,7 +89,7 @@
 		<p>
 			<img src="Screenshot/2010-11-22/wellcomparedir_main_window_2010-11-22_1528_01.jpg"
 				alt="Screenshot of the main window of WellCompareDir from 2010-11-22" /><br />
-			The main window
+			Screenshot of the main window, showing a "bad image" to the left and a "good image" to the right. The right file is preferred and will be copied to the output directory.
 		</p>
 	</section>
 	<section id="manual" class="container">
@@ -289,16 +287,19 @@
             coded in November 2010 by <a href="http://joelpurra.com/">Joel Purra</a>.
 
 	</footer>
-	<script type="text/javascript">
-		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-		try
-		{
-			var pageTracker = _gat._getTracker("UA-15653943-1");
-			pageTracker._trackPageview();
-		} catch (err) { }
-	</script>
+    <script type="text/javascript">
+//<![CDATA[
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-15653943-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function ()
+    {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+//]]>
+</script>
 </body>
 </html>

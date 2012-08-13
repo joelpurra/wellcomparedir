@@ -1,4 +1,4 @@
-﻿namespace WellCompareDir.WPF
+namespace WellCompareDir.WPF
 {
     using System.ComponentModel;
     using System.Windows;
