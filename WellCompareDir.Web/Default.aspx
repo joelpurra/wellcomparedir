@@ -38,37 +38,38 @@
 	<hr class="space" />
 	<section id="download" class="container">
 		<h1 class="hide">
-			Download</h1>
+			Download
+		</h1>
 		<div class="span-12">
 			<p>
 				<a href="download/2010-11-22_1528/WellCompareDir.Installer.msi" id="download-latest"
 					class="button block">Download latest version</a>
 			</p>
 			<h2>
-				Installation</h2>
+				Installation
+			</h2>
 			<p>
 				Download and run installation package. A shortcut will be installed, find it from
 				your start menu to run the program.
 			</p>
-			<h1 style="color: Red;">
-				TODO: COPY INFO HERE
-			</h1>
-			<h2>
-				Latest version: xxxx-xx-.....</h2>
-			<ul>
-				<li>xxxx....</li>
-				<li>xxxx....</li>
-			</ul>
 		</div>
 		<aside class="span-12 last">
 			<h2>
-				Alternatives</h2>
+				Alternatives
+			</h2>
 			<ul>
-				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir.Installer.msi">Installation package</a></li>
-				<li>...</li>
+				<li><a href="http://joelpurra.github.com/wellcomparedir/">Latest source code on github</a></li>
+				<li><a href="download/2010-11-22_1528/WellCompareDir.Installer.msi">Installation package</a></li>
+				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_release.7z">Release
+					version (no installation)</a></li>
+				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_debug.7z">Debug
+					version (no installation)</a></li>
+				<li><a href="download/2010-11-22_1528/WellCompareDir_2010-11-22_1528_source.7z">Source
+					code</a></li>
 			</ul>
 			<h2>
-				Requirements</h2>
+				Requirements
+			</h2>
 			<p>
 				Normal Windows computers that have installed Microsoft's monthly patches should
 				be able to use WellCompareDir with no extra hassle.
@@ -85,7 +86,8 @@
 	</section>
 	<section id="screenshots" class="container">
 		<h1>
-			Screenshots</h1>
+			Screenshots
+		</h1>
 		<p>
 			<img src="Screenshot/2010-11-22/wellcomparedir_main_window_2010-11-22_1528_01.jpg"
 				alt="Screenshot of the main window of WellCompareDir from 2010-11-22" /><br />
@@ -94,7 +96,8 @@
 	</section>
 	<section id="manual" class="container">
 		<h1>
-			Manual</h1>
+			Manual
+		</h1>
 		<p>
 			Use this tool to merge images from two folders to a third, output folder. It is
 			important that the images have the same name if they are considered the same image.
@@ -102,7 +105,8 @@
 		</p>
 		<section>
 			<h2>
-				Usage examples</h2>
+				Usage examples
+			</h2>
 			<ul>
 				<li>Compare images before and after batch modifications of contrast, color balance,
 					white balance and such.</li>
@@ -113,7 +117,8 @@
 		</section>
 		<section>
 			<h2>
-				Get started</h2>
+				Get started
+			</h2>
 			<ol>
 				<li>Click the left folder button to browse to the left folder for comparison.</li>
 				<li>Click the right folder button to browse to the right folder for comparison.</li>
@@ -127,7 +132,8 @@
 		</section>
 		<section>
 			<h2>
-				Tips</h2>
+				Tips
+			</h2>
 			<ul>
 				<li>In the list of images from the two selected folders, both left and right side images
 					appear in comined alphabetical order with gaps where there is no match on the other
@@ -151,12 +157,14 @@
 		</section>
 		<section>
 			<h2>
-				Shortcut keys</h2>
+				Shortcut keys
+			</h2>
 			<p>
 				Speed up your work with shortcut keys, the way WellCompareDir was meant to be used.
 			</p>
 			<h3>
-				Primary shortcut keys</h3>
+				Primary shortcut keys
+			</h3>
 			<dl>
 				<dt>Space</dt>
 				<dd>
@@ -175,7 +183,8 @@
 					Back to the previous matching image pair.</dd>
 			</dl>
 			<h3>
-				Secondary shortcut keys</h3>
+				Secondary shortcut keys
+			</h3>
 			<dl>
 				<dt>Control + Left arrow key</dt>
 				<dd>
@@ -194,30 +203,30 @@
 	</section>
 	<section id="history" class="container">
 		<h1>
-			History</h1>
+			History
+		</h1>
 		<p>
 			A brief summary of the changes from version to version.
 		</p>
 		<section>
 			<h2>
-				Latest version: 2011-xx-xx xx:xx</h2>
+				Latest version: <em>unreleased</em>
+			</h2>
 			<ul>
 				<li>Skip non-matching files by default</li>
 				<li>More shortcut keys</li>
+				<li>Fixed a few possible crashes</li>
+				<li>Cleaned up code</li>
+				<li>Moved the <a href="http://joelpurra.github.com/wellcomparedir/">latest source code to github</a>.</li>
 			</ul>
-			<ul>
-				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir.Installer.msi">Installation package</a></li>
-				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir_2010-xx-xx_xxxx_release.7z">Release
-					version (no installation)</a></li>
-				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir_2010-xx-xx_xxxx_debug.7z">Debug
-					version (no installation)</a></li>
-				<li><a href="download/2010-xx-xx_xxxx/WellCompareDir_2010-xx-xx_xxxx_source.7z">Source
-					code</a></li>
-			</ul>
+			<p>
+				Please compile this version from <a href="http://joelpurra.github.com/wellcomparedir/">the WellCompareDir source on github</a>.
+			</p>
 		</section>
 		<section>
 			<h2>
-				2010-11-22 15:28</h2>
+				2010-11-22 15:28
+			</h2>
 			<ul>
 				<li>Added installer for simpler distribution</li>
 				<li>Match images with different extensions</li>
@@ -238,7 +247,8 @@
 		</section>
 		<section>
 			<h2>
-				2010-11-19 02:39</h2>
+				2010-11-19 02:39
+			</h2>
 			<ul>
 				<li>First public release</li>
 			</ul>
@@ -256,7 +266,8 @@
 	</section>
 	<section id="about" class="container">
 		<h1>
-			About</h1>
+			About
+		</h1>
 		<p>
 			WellCompareDir was created to sort <a href="http://www.froer.nu/search/random/">thousands
 				of product images for Fröer.nu</a> in from several folders. These product images

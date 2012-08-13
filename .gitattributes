@@ -1,0 +1,10 @@
+* text=auto
+
+*.sln text eol=crlf
+*.csproj text eol=crlf
+*.cs text eol=crlf
+*.xaml text eol=crlf
+*.xml text eol=crlf
+*.html text eol=crlf
+*.css text eol=crlf
+*.aspx text eol=crlf
