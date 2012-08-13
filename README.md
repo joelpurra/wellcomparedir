@@ -1,6 +1,8 @@
 # [WellCompareDir](http://joelpurra.com/Projects/WellCompareDir/)
 *A tool to compare and select images with the same name from two folders, and copy to a third folder*
 
+**This is an experimental branch working towards being able to compare any number of images side-by-side.**
+
 * Project site: http://joelpurra.com/Projects/WellCompareDir/
 * Source on github: http://joelpurra.github.com/wellcomparedir/
 
