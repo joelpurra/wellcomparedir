@@ -222,7 +222,7 @@
         </member>
         <member name="P:Microsoft.Practices.ObjectBuilder2.IBuilderContext.Policies">
             <summary>
-            Gets the policies for the current context. 
+            Gets the policies for the current context.
             </summary>
             <remarks>Any policies added to this object are transient
             and will be erased at the end of the buildup.</remarks>
@@ -263,9 +263,9 @@
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.BuilderContext.#ctor(Microsoft.Practices.ObjectBuilder2.IStrategyChain,Microsoft.Practices.ObjectBuilder2.IReadWriteLocator,Microsoft.Practices.ObjectBuilder2.ILifetimeContainer,Microsoft.Practices.ObjectBuilder2.IPolicyList,System.Object,System.Object)">
             <summary>
-            Initialize a new instance of the <see cref="T:Microsoft.Practices.ObjectBuilder2.BuilderContext"/> class with a <see cref="T:Microsoft.Practices.ObjectBuilder2.IStrategyChain"/>, 
-            <see cref="T:Microsoft.Practices.ObjectBuilder2.IReadWriteLocator"/>, <see cref="T:Microsoft.Practices.ObjectBuilder2.ILifetimeContainer"/>, <see cref="T:Microsoft.Practices.ObjectBuilder2.IPolicyList"/> and the 
-            build key used to start this build operation. 
+            Initialize a new instance of the <see cref="T:Microsoft.Practices.ObjectBuilder2.BuilderContext"/> class with a <see cref="T:Microsoft.Practices.ObjectBuilder2.IStrategyChain"/>,
+            <see cref="T:Microsoft.Practices.ObjectBuilder2.IReadWriteLocator"/>, <see cref="T:Microsoft.Practices.ObjectBuilder2.ILifetimeContainer"/>, <see cref="T:Microsoft.Practices.ObjectBuilder2.IPolicyList"/> and the
+            build key used to start this build operation.
             </summary>
             <param name="chain">The <see cref="T:Microsoft.Practices.ObjectBuilder2.IStrategyChain"/> to use for this context.</param>
             <param name="locator">The <see cref="T:Microsoft.Practices.ObjectBuilder2.IReadWriteLocator"/> to use for this context.</param>
@@ -364,10 +364,10 @@
         </member>
         <member name="P:Microsoft.Practices.ObjectBuilder2.BuilderContext.Policies">
             <summary>
-            Gets the policies for the current context. 
+            Gets the policies for the current context.
             </summary>
             <remarks>
-            Any modifications will be transient (meaning, they will be forgotten when 
+            Any modifications will be transient (meaning, they will be forgotten when
             the outer BuildUp for this context is finished executing).
             </remarks>
             <value>
@@ -437,7 +437,7 @@
             <summary>
             When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"></see> with information about the exception.
             </summary>
-            
+
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or destination. </param>
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception being thrown. </param>
             <exception cref="T:System.ArgumentNullException">The info parameter is a null reference (Nothing in Visual Basic). </exception><filterpriority>2</filterpriority><PermissionSet><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" /><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" /></PermissionSet>
@@ -461,7 +461,7 @@
             <summary>
             Gets a message that describes the current exception.
             </summary>
-            
+
             <returns>
             The error message that explains the reason for the exception, or an empty string("").
             </returns>
@@ -966,11 +966,11 @@
             <summary>
             Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
             </summary>
-            
+
             <returns>
             Value Condition Less than zerox is less than y.Zerox equals y.Greater than zerox is greater than y.
             </returns>
-            
+
             <param name="y">The second object to compare.</param>
             <param name="x">The first object to compare.</param>
         </member>
@@ -1677,7 +1677,7 @@
         </member>
         <member name="T:Microsoft.Practices.ObjectBuilder2.IStagedStrategyChain">
             <summary>
-            This interface defines a standard method to convert any 
+            This interface defines a standard method to convert any
             <see cref="T:Microsoft.Practices.ObjectBuilder2.StagedStrategyChain`1"/> regardless
             of the stage enum into a regular, flat strategy chain.
             </summary>
@@ -1810,12 +1810,12 @@
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.LifetimeContainer.Dispose">
             <summary>
-            Releases the resources used by the <see cref="T:Microsoft.Practices.ObjectBuilder2.LifetimeContainer"/>. 
+            Releases the resources used by the <see cref="T:Microsoft.Practices.ObjectBuilder2.LifetimeContainer"/>.
             </summary>
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.LifetimeContainer.Dispose(System.Boolean)">
             <summary>
-            Releases the managed resources used by the DbDataReader and optionally releases the unmanaged resources. 
+            Releases the managed resources used by the DbDataReader and optionally releases the unmanaged resources.
             </summary>
             <param name="disposing">
             true to release managed and unmanaged resources; false to release only unmanaged resources.
@@ -1826,7 +1826,7 @@
             Returns an enumerator that iterates through the lifetime container.
             </summary>
             <returns>
-            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the life time container. 
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the life time container.
             </returns>
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.LifetimeContainer.System#Collections#IEnumerable#GetEnumerator">
@@ -1834,7 +1834,7 @@
             Returns an enumerator that iterates through the lifetime container.
             </summary>
             <returns>
-            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the life time container. 
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the life time container.
             </returns>
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.LifetimeContainer.Remove(System.Object)">
@@ -2043,7 +2043,7 @@
             Returns an enumerator that iterates through the locator.
             </summary>
             <returns>
-            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the locator. 
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the locator.
             </returns>
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.ReadableLocator.System#Collections#IEnumerable#GetEnumerator">
@@ -2051,7 +2051,7 @@
             Returns an enumerator that iterates through the locator.
             </summary>
             <returns>
-            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the locator. 
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the locator.
             </returns>
         </member>
         <member name="P:Microsoft.Practices.ObjectBuilder2.ReadableLocator.Count">
@@ -2118,12 +2118,12 @@
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.Locator.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Practices.ObjectBuilder2.Locator"/> class. 
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.ObjectBuilder2.Locator"/> class.
             </summary>
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.Locator.#ctor(Microsoft.Practices.ObjectBuilder2.IReadableLocator)">
             <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Practices.ObjectBuilder2.Locator"/> class as a child of the <paramref name="parentLocator"/>. 
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.ObjectBuilder2.Locator"/> class as a child of the <paramref name="parentLocator"/>.
             </summary>
             <param name="parentLocator">The parent locator.</param>
         </member>
@@ -2158,7 +2158,7 @@
             Returns an enumerator that iterates through a locator.
             </summary>
             <returns>
-            An <see cref="T:System.Collections.Generic.IEnumerator`1"/> object that can be used to iterate through the locator. 
+            An <see cref="T:System.Collections.Generic.IEnumerator`1"/> object that can be used to iterate through the locator.
             </returns>
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.Locator.Remove(System.Object)">
@@ -2215,7 +2215,7 @@
             Returns an enumerator that iterates through the locator.
             </summary>
             <returns>
-            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the locator. 
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the locator.
             </returns>
         </member>
         <member name="P:Microsoft.Practices.ObjectBuilder2.ReadOnlyLocator.Count">
@@ -2596,7 +2596,7 @@
             <summary>
             Returns an enumerator that iterates through the collection.
             </summary>
-            
+
             <returns>
             A <see cref="T:System.Collections.Generic.IEnumerator`1"></see> that can be used to iterate through the collection.
             </returns>
@@ -2606,7 +2606,7 @@
             <summary>
             Returns an enumerator that iterates through a collection.
             </summary>
-            
+
             <returns>
             An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
             </returns>
@@ -2694,7 +2694,7 @@
             Returns an enumerator that iterates through the dictionary.
             </summary>
             <returns>
-            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the dictionary. 
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the dictionary.
             </returns>
         </member>
         <member name="M:Microsoft.Practices.ObjectBuilder2.WeakRefDictionary`2.Remove(`0)">

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using System;
+=======
+﻿using System;
+>>>>>>> Added more types to .gitattributes, normalize line endings
 using System.Windows;
 using System.Windows.Threading;
 

@@ -1,4 +1,4 @@
-﻿namespace WellCompareDir.Comparer
+namespace WellCompareDir.Comparer
 {
     using System.Collections.Generic;
     using System.IO;

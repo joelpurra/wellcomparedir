@@ -348,7 +348,7 @@
         </member>
         <member name="M:Microsoft.Practices.Unity.InjectionParameterValue.ToParameter(System.Object)">
             <summary>
-            Convert an arbitrary value to an InjectionParameterValue object. The rules are: 
+            Convert an arbitrary value to an InjectionParameterValue object. The rules are:
             If it's already an InjectionParameterValue, return it. If it's a Type, return a
             ResolvedParameter object for that type. Otherwise return an InjectionParameter
             object for that value.
@@ -403,7 +403,7 @@
         <member name="T:Microsoft.Practices.Unity.GenericResolvedArrayParameter">
             <summary>
             A <see cref="T:Microsoft.Practices.Unity.InjectionParameterValue"/> that lets you specify that
-            an array containing the registered instances of a generic type parameter 
+            an array containing the registered instances of a generic type parameter
             should be resolved.
             </summary>
         </member>
@@ -692,7 +692,7 @@
         </member>
         <member name="T:Microsoft.Practices.Unity.ResolvedArrayParameter">
             <summary>
-            A class that stores a type, and generates a 
+            A class that stores a type, and generates a
             resolver object that resolves all the named instances or the
             type registered in a container.
             </summary>
@@ -1320,9 +1320,9 @@
             The purpose of this class is to provide a basic implementation of the lifetime manager synchronization pattern.
             </para>
             <para>
-            Calls to the <see cref="M:Microsoft.Practices.Unity.SynchronizedLifetimeManager.GetValue"/> method of a <see cref="T:Microsoft.Practices.Unity.SynchronizedLifetimeManager"/> 
-            instance acquire a lock, and if the instance has not been initialized with a value yet the lock will only be released 
-            when such an initialization takes place by calling the <see cref="M:Microsoft.Practices.Unity.SynchronizedLifetimeManager.SetValue(System.Object)"/> method or if 
+            Calls to the <see cref="M:Microsoft.Practices.Unity.SynchronizedLifetimeManager.GetValue"/> method of a <see cref="T:Microsoft.Practices.Unity.SynchronizedLifetimeManager"/>
+            instance acquire a lock, and if the instance has not been initialized with a value yet the lock will only be released
+            when such an initialization takes place by calling the <see cref="M:Microsoft.Practices.Unity.SynchronizedLifetimeManager.SetValue(System.Object)"/> method or if
             the build request which resulted in the call to the GetValue method fails.
             </para>
             </remarks>
@@ -1361,7 +1361,7 @@
         </member>
         <member name="M:Microsoft.Practices.Unity.SynchronizedLifetimeManager.SynchronizedGetValue">
             <summary>
-            Performs the actual retrieval of a value from the backing store associated 
+            Performs the actual retrieval of a value from the backing store associated
             with this Lifetime policy.
             </summary>
             <returns>the object desired, or null if no such object is currently stored.</returns>
@@ -1373,7 +1373,7 @@
             Stores the given value into backing store for retrieval later.
             </summary>
             <param name="newValue">The object being stored.</param>
-            <remarks>Setting a value will attempt to release the lock acquired by 
+            <remarks>Setting a value will attempt to release the lock acquired by
             <see cref="M:Microsoft.Practices.Unity.SynchronizedLifetimeManager.GetValue"/>.</remarks>
         </member>
         <member name="M:Microsoft.Practices.Unity.SynchronizedLifetimeManager.SynchronizedSetValue(System.Object)">
@@ -1476,7 +1476,7 @@
         </member>
         <member name="T:Microsoft.Practices.Unity.PerThreadLifetimeManager">
             <summary>
-            A <see cref="T:Microsoft.Practices.Unity.LifetimeManager"/> that holds the instances given to it, 
+            A <see cref="T:Microsoft.Practices.Unity.LifetimeManager"/> that holds the instances given to it,
             keeping one instance per thread.
             </summary>
             <remarks>
@@ -1492,10 +1492,10 @@
         </member>
         <member name="M:Microsoft.Practices.Unity.PerThreadLifetimeManager.GetValue">
             <summary>
-            Retrieve a value from the backing store associated with this Lifetime policy for the 
+            Retrieve a value from the backing store associated with this Lifetime policy for the
             current thread.
             </summary>
-            <returns>the object desired, or <see langword="null"/> if no such object is currently 
+            <returns>the object desired, or <see langword="null"/> if no such object is currently
             stored for the current thread.</returns>
         </member>
         <member name="M:Microsoft.Practices.Unity.PerThreadLifetimeManager.SetValue(System.Object)">
@@ -1737,7 +1737,7 @@
         </member>
         <member name="M:Microsoft.Practices.Unity.ObjectBuilder.SpecifiedPropertiesSelectorPolicy.AddPropertyAndValue(System.Reflection.PropertyInfo,Microsoft.Practices.Unity.InjectionParameterValue)">
             <summary>
-            Add a property that will be par of the set returned when the 
+            Add a property that will be par of the set returned when the
             <see cref="M:Microsoft.Practices.Unity.ObjectBuilder.SpecifiedPropertiesSelectorPolicy.SelectProperties(Microsoft.Practices.ObjectBuilder2.IBuilderContext)"/> is called.
             </summary>
             <param name="property">The property to set.</param>
@@ -1794,7 +1794,7 @@
         </member>
         <member name="T:Microsoft.Practices.Unity.ResolvedParameter">
             <summary>
-            A class that stores a name and type, and generates a 
+            A class that stores a name and type, and generates a
             resolver object that resolves the parameter via the
             container.
             </summary>
@@ -2814,7 +2814,7 @@
         </member>
         <member name="M:Microsoft.Practices.Unity.Utility.MethodReflectionHelper.GetClosedParameterTypes(System.Type[])">
             <summary>
-            Given our set of generic type arguments, 
+            Given our set of generic type arguments,
             </summary>
             <param name="genericTypeArguments"></param>
             <returns></returns>
