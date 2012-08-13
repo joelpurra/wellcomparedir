@@ -3,3 +3,5 @@
 [Oo]bj/
 [Bb]in/
 *.Cache
+*.orig
+*.bak
