@@ -73,12 +73,6 @@
     <Content Include="Screenshot\2010-11-19\wellcomparedir_main_window_2010-11-19_0239_01.png" />
     <Content Include="Screenshot\2010-11-22\wellcomparedir_main_window_2010-11-22_1528_01.jpg" />
     <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
