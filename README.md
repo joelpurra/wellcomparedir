@@ -12,3 +12,7 @@
 WellCompareDir copyright &copy; 2010, 2011, 2012 Joel Purra http://joelpurra.se/ All rights reserved.
 
 Released as free software under the GNU General Public License. See COPYING.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joelpurra/wellcomparedir/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
