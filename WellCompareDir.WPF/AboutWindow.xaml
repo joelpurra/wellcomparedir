@@ -20,7 +20,7 @@
             <LineBreak />
             <LineBreak />
             <TextBlock TextWrapping="Wrap">
-                WellCompareDir copyright 2010 <Hyperlink NavigateUri="http://joelpurra.com/" RequestNavigate="Hyperlink_RequestNavigate">Joel Purra</Hyperlink>. Released as free software under the <Hyperlink NavigateUri="http://www.gnu.org/licenses/gpl.html" RequestNavigate="Hyperlink_RequestNavigate">GNU General Public License</Hyperlink>:
+                WellCompareDir copyright 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 <Hyperlink NavigateUri="http://joelpurra.com/" RequestNavigate="Hyperlink_RequestNavigate">Joel Purra</Hyperlink>. Released as free software under the <Hyperlink NavigateUri="http://www.gnu.org/licenses/gpl.html" RequestNavigate="Hyperlink_RequestNavigate">GNU General Public License</Hyperlink>:
             </TextBlock>
             <Border BorderBrush="LightGray" BorderThickness="1" Margin="0,5" SnapsToDevicePixels="True">
                 <ScrollViewer Height="115" Padding="5">

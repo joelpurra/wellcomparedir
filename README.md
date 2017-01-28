@@ -9,7 +9,7 @@
 
 
 ## License
-WellCompareDir copyright &copy; 2010, 2011, 2012 Joel Purra http://joelpurra.se/ All rights reserved.
+WellCompareDir copyright &copy; 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 Joel Purra http://joelpurra.se/ All rights reserved.
 
 Released as free software under the GNU General Public License. See COPYING.
 
