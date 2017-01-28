@@ -1,15 +1,17 @@
-* text=auto
+* text=auto eol=lf
+
+*.md text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.url text eol=lf
+*.txt text eol=lf
 
 *.sln text eol=crlf
 *.csproj text eol=crlf
 *.cs text eol=crlf
 *.xaml text eol=crlf
 *.xml text eol=crlf
-*.html text eol=crlf
-*.css text eol=crlf
 *.aspx text eol=crlf
-*.url text eol=crlf
 *.settings text eol=crlf
 *.vdproj text eol=crlf
 *.config text eol=crlf
-*.txt text eol=crlf
