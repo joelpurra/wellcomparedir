@@ -4,7 +4,7 @@
     using System.Windows.Input;
 
     // From
-    // http://relentlessdevelopment.wordpress.com/2010/03/30/simplified-mvvm-commanding-with-delegatecommand/
+    // https://relentlessdevelopment.wordpress.com/2010/03/30/simplified-mvvm-commanding-with-delegatecommand/
     public class DelegateCommand : ICommand
     {
         private Action _executeMethod;

@@ -5,7 +5,7 @@
 
     /// <summary>
     ///     Relaying key bindings.
-    ///     From http://stackoverflow.com/questions/1023960/keybinding-a-relaycommand.
+    ///     From https://stackoverflow.com/questions/1023960/keybinding-a-relaycommand.
     /// </summary>
     public class RelayKeyBinding : KeyBinding
     {

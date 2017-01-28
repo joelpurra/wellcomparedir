@@ -5,7 +5,7 @@
     using System.Windows.Input;
 
     // From
-    // http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
+    // https://msdn.microsoft.com/en-us/magazine/dd419663.aspx
     public class RelayCommand : ICommand
     {
         #region Fields

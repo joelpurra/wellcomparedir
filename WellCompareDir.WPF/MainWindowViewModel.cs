@@ -478,7 +478,7 @@
         #endregion
 
         // From
-        // http://stackoverflow.com/questions/128618/c-file-size-format-provider
+        // https://stackoverflow.com/questions/128618/c-file-size-format-provider
         [DllImport("Shlwapi.dll", CharSet = CharSet.Auto)]
         public static extern long StrFormatByteSize(long fileSize, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer, int bufferSize);
 
@@ -608,7 +608,7 @@
         #endregion
 
         // From
-        // http://stackoverflow.com/questions/20586/wpf-image-urisource-and-data-binding
+        // https://stackoverflow.com/questions/20586/wpf-image-urisource-and-data-binding
         private static BitmapImage LoadImage(string fullPath)
         {
             BitmapImage image = new BitmapImage();
@@ -622,7 +622,7 @@
             ////image.DecodeFailed
 
             // Used to avoid memory leaks?
-            // http://blogs.msdn.com/b/jgoldb/archive/2008/05/04/memory-leaks-in-wpf-based-applications-blog-update.aspx
+            // https://blogs.msdn.microsoft.com/jgoldb/2008/05/05/memory-leaks-in-wpf-based-applications-blog-update/
             if (image.CanFreeze)
             {
                 image.Freeze();

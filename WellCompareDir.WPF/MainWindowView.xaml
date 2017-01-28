@@ -72,7 +72,7 @@
         <Grid Height="Auto" DockPanel.Dock="Top">
             <Grid.Resources>
                 <!-- From -->
-                <!-- http://www.codeproject.com/KB/WPF/ScrollSynchronization.aspx -->
+                <!-- https://www.codeproject.com/Articles/39244/Scroll-Synchronization -->
                 <Style TargetType="ScrollViewer">
                     <Setter Property="scroll:ScrollSynchronizer.ScrollGroup" Value="Group1" />
                 </Style>

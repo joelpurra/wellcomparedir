@@ -6,7 +6,7 @@
 
     /// <summary>
     ///     Compare two directories, left and right.
-    ///     Parts from http://msdn.microsoft.com/en-us/library/bb546137.aspx.
+    ///     Parts from https://msdn.microsoft.com/en-us/library/bb546137.aspx.
     /// </summary>
     public class DirectoryComparer
     {
@@ -35,7 +35,7 @@
 
         public IEnumerable<FileInfo> GetSmililarities()
         {
-            // Find the common files. It produces a sequence and doesn't 
+            // Find the common files. It produces a sequence and doesn't
             // execute until the foreach statement.
             return this.Left.Intersect(this.Right, this.Comparer);
         }

@@ -15,12 +15,12 @@
             </TextBlock>
             <TextBlock>
                 <Image Source="/WellCompareDir.WPF;component/Images/pictures.png" Stretch="None" VerticalAlignment="Center" />
-                <Hyperlink NavigateUri="http://joelpurra.com/Projects/WellCompareDir/" BaselineAlignment="Center" RequestNavigate="Hyperlink_RequestNavigate">http://joelpurra.com/Projects/WellCompareDir/</Hyperlink>
+                <Hyperlink NavigateUri="https://joelpurra.com/projects/WellCompareDir/" BaselineAlignment="Center" RequestNavigate="Hyperlink_RequestNavigate">https://joelpurra.com/projects/WellCompareDir/</Hyperlink>
             </TextBlock>
             <LineBreak />
             <LineBreak />
             <TextBlock TextWrapping="Wrap">
-                WellCompareDir copyright 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 <Hyperlink NavigateUri="http://joelpurra.com/" RequestNavigate="Hyperlink_RequestNavigate">Joel Purra</Hyperlink>. Released as free software under the <Hyperlink NavigateUri="http://www.gnu.org/licenses/gpl.html" RequestNavigate="Hyperlink_RequestNavigate">GNU General Public License</Hyperlink>:
+                WellCompareDir copyright 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 <Hyperlink NavigateUri="https://joelpurra.com/" RequestNavigate="Hyperlink_RequestNavigate">Joel Purra</Hyperlink>. Released as free software under the <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl.html" RequestNavigate="Hyperlink_RequestNavigate">GNU General Public License</Hyperlink>:
             </TextBlock>
             <Border BorderBrush="LightGray" BorderThickness="1" Margin="0,5" SnapsToDevicePixels="True">
                 <ScrollViewer Height="115" Padding="5">
@@ -36,15 +36,15 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 <LineBreak /><LineBreak />
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see &lt;<Hyperlink NavigateUri="http://www.gnu.org/licenses/" RequestNavigate="Hyperlink_RequestNavigate">http://www.gnu.org/licenses/</Hyperlink>&gt;.
+along with this program.  If not, see &lt;<Hyperlink NavigateUri="https://www.gnu.org/licenses/" RequestNavigate="Hyperlink_RequestNavigate">https://www.gnu.org/licenses/</Hyperlink>&gt;.
                     </TextBlock>
                 </ScrollViewer>
             </Border>
             <TextBlock TextWrapping="Wrap">
-                <Hyperlink NavigateUri="http://www.famfamfam.com/lab/icons/silk/" RequestNavigate="Hyperlink_RequestNavigate">Silk Icons</Hyperlink> by Mark James used under the <Hyperlink NavigateUri="http://creativecommons.org/licenses/by/3.0/" RequestNavigate="Hyperlink_RequestNavigate">Creative Commons Attribution 3.0 License</Hyperlink>.
+                <Hyperlink NavigateUri="http://www.famfamfam.com/lab/icons/silk/" RequestNavigate="Hyperlink_RequestNavigate">Silk Icons</Hyperlink> by Mark James used under the <Hyperlink NavigateUri="https://creativecommons.org/licenses/by/3.0/" RequestNavigate="Hyperlink_RequestNavigate">Creative Commons Attribution 3.0 License</Hyperlink>.
             </TextBlock>
             <TextBlock TextWrapping="Wrap">
-                <Hyperlink NavigateUri="http://www.codeproject.com/KB/WPF/ScrollSynchronization.aspx" RequestNavigate="Hyperlink_RequestNavigate">ScrollSynchronization</Hyperlink> by Karin Huber used under the <Hyperlink NavigateUri="http://www.codeproject.com/info/cpol10.aspx" RequestNavigate="Hyperlink_RequestNavigate">The Code Project Open License (CPOL) 1.02</Hyperlink>.
+                <Hyperlink NavigateUri="https://www.codeproject.com/Articles/39244/Scroll-Synchronization" RequestNavigate="Hyperlink_RequestNavigate">ScrollSynchronization</Hyperlink> by Karin Huber used under the <Hyperlink NavigateUri="https://www.codeproject.com/info/cpol10.aspx" RequestNavigate="Hyperlink_RequestNavigate">The Code Project Open License (CPOL) 1.02</Hyperlink>.
             </TextBlock>
             <TextBlock TextWrapping="Wrap">
                 Uses <Hyperlink NavigateUri="http://blog.vuscode.com/malovicn/archive/2010/11/07/naked-mvvm-simplest-possible-mvvm-approach.aspx" RequestNavigate="Hyperlink_RequestNavigate">Naked MVVM</Hyperlink> by malovicn.

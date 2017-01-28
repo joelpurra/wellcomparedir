@@ -5,7 +5,7 @@
 
     /// <summary>
     ///     Parts from
-    ///     http://msdn.microsoft.com/en-us/library/bb546137.aspx
+    ///     https://msdn.microsoft.com/en-us/library/bb546137.aspx
     ///     This implementation defines a very simple comparison
     ///     between two FileInfo objects. It only compares the name
     ///     of the files being compared.
@@ -22,7 +22,7 @@
         }
 
         /// <summary>
-        /// Return a hash that reflects the comparison criteria. According to the 
+        /// Return a hash that reflects the comparison criteria. According to the
         /// rules for IEqualityComparer<T>, if Equals is true, then the hash codes must
         /// also be equal. Because equality as defined here is a simple value equality, not
         /// reference identity, it is possible that two or more objects will produce the same

@@ -193,7 +193,7 @@
                 "Message" = "8:[VSDNETMSG]"
                 "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
                 "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
+                "InstallUrl" = "8:https://go.microsoft.com/fwlink/?LinkId=131000"
                 }
             }
         }
@@ -452,13 +452,13 @@
         "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:Joel Purra"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:http://joelpurra.se/Projects/WellCompareDir/"
+        "ARPHELPLINK" = "8:https://joelpurra.com/projects/WellCompareDir/"
         "Title" = "8:WellCompareDir.Installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Joel Purra"
         "Keywords" = "8:compare folder image photo"
         "ARPCOMMENTS" = "8:WellCompareDir is a tool to compare and select images with the same name from two folders, and copy to a third folder."
-        "ARPURLINFOABOUT" = "8:http://joelpurra.se/"
+        "ARPURLINFOABOUT" = "8:https://joelpurra.com/"
         "ARPPRODUCTICON" = "8:_58DC77902CA44853A81740AFA8BA4BD5"
         "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
