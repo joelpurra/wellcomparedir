@@ -1,5 +1,12 @@
 # [WellCompareDir](https://joelpurra.com/projects/WellCompareDir/)
 
+<p class="donate">
+  <a href="https://joelpurra.com/donate/proceed/?amount=5&currency=usd"><kbd>Donate $5 now</kbd></a>
+  <a href="https://joelpurra.com/donate/proceed/?amount=25&currency=usd"><kbd>Donate $25 now</kbd></a>
+  <a href="https://joelpurra.com/donate/proceed/?amount=100&currency=usd&invoice=true"><kbd>Donate $100 now</kbd></a>
+  <a href="https://joelpurra.com/donate/"><kbd>More options</kbd></a>
+</p>
+
 *A tool to compare and select images with the same name from two folders, and copy to a third folder*
 
 - [Project site with downloads](https://joelpurra.com/projects/WellCompareDir/)
@@ -14,4 +21,4 @@
 
 
 
-[WellCompareDir](https://joelpurra.com/projects/WellCompareDir/) Copyright &copy; 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 [Joel Purra](https://joelpurra.com/). All rights reserved. Released as free software under the [GNU General Public License](https://www.gnu.org/licenses/gpl.html).
+[WellCompareDir](https://joelpurra.com/projects/WellCompareDir/) Copyright &copy; 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 [Joel Purra](https://joelpurra.com/). All rights reserved. Released as free software under the [GNU General Public License](https://www.gnu.org/licenses/gpl.html). [Your donations are appreciated!](https://joelpurra.com/donate/)
