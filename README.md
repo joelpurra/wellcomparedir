@@ -100,8 +100,8 @@ Normal Windows computers that have installed Microsoft's monthly patches should 
 - Microsoft Windows
 - Microsoft Windows Installer, if downloading the installer package
 - <a href="https://www.microsoft.com/net/">Microsoft .NET Framework 4.0</a>
-- <a href="http://www.7-zip.org/">7-Zip</a> if downloading a non-installer package
-- For non-Windows users: <a href="http://www.mono-project.com/">Mono</a> has not been tested, please let me know if you have any success.
+- <a href="https://www.7-zip.org/">7-Zip</a> if downloading a non-installer package
+- For non-Windows users: <a href="https://www.mono-project.com/">Mono</a> has not been tested, please let me know if you have any success.
 
 
 
