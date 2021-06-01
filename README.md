@@ -9,6 +9,14 @@
 
 *A tool to compare and select images with the same name from two folders, and copy to a third folder*
 
+
+
+> ## ⚠️ This project has been archived
+>
+> No future updates are planned. Feel free to continue using it, but expect no support.
+
+
+
 [![Screenshot of the main window of WellCompareDir from 2010-11-22](./WellCompareDir.Web/screenshot/2010-11-22/wellcomparedir_main_window_2010-11-22_1528_01.jpg)](https://joelpurra.com/projects/WellCompareDir/)  
 *Screenshot of the main window, showing a "bad image" to the left and a "good image" to the right. The right file is preferred and will be copied to the output directory. Either hit <kbd>space</kbd> to get the automatically chosen image, <kbd>←</kbd> or <kbd>→</kbd> or click to select manually*
 
